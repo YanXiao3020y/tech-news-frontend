@@ -1,0 +1,24 @@
+.container {
+  height: 80px;
+  border-bottom: #e2e2e2 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.title {
+  font-size: 1.4rem;
+  text-align:center;
+}
+.title h1 {
+  line-height: 80px;
+}
+
+.nav {
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
+}
+.nav .item {
+  height: 100%;
+}
