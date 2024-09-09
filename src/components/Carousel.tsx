@@ -1,5 +1,8 @@
-export const Carousel = () => {
+import styles from './Carousel.module.css'
+const Carousel = () => {
   return (
-    <div></div>
+    <div className={styles.container}></div>
   )
 }
+
+export default Carousel

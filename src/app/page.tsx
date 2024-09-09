@@ -1,6 +1,5 @@
-import { NavBar } from '../components/NavBar'
-import { HomePageContent } from '../components/HomePageContent'
-import { Carousel } from '../components/Carousel'
+import NavBar from '../components/NavBar'
+import HomePageContent from '../components/HomePageContent'
 import { Fragment } from 'react'
 export default function Home() {
   return (
@@ -8,5 +7,5 @@ export default function Home() {
       <NavBar />
       <HomePageContent />
     </Fragment>
-  );
+  )
 }

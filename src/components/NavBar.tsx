@@ -1,6 +1,6 @@
 import styles from './NavBar.module.css'
 import Image from 'next/image'
-export const NavBar = () => {
+const NavBar = () => {
   const navList: Array<string> = ['NEWS', 'CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
   return (
     <div className={styles.container}>
@@ -18,3 +18,5 @@ export const NavBar = () => {
     </div>
   )
 }
+
+export default NavBar

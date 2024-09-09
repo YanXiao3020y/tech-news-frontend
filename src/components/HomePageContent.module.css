@@ -1,4 +1,14 @@
 .body {
-  flex: 1;
+  height: 92%;
+  min-height: 900px;
   background-color: aliceblue;
+  padding: 30px;
+}
+.container {
+  display: grid;
+  height: 100%;
+  gap: 20px;
+  grid-template-areas:
+    "topLeft topLeft topLeft topLeft topRight topRight topRight"
+    "botLeft botLeft botRight botRight botRight botRight botRight";
 }
