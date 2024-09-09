@@ -1,6 +1,8 @@
 .trendings {
   width: 100%;
   height: 100%;
-  background-color: aqua;
+  background-color: #f5f5f5;
   grid-area: botLeft;
+  border-radius: 10px;
+  border: 1px solid #e2e2e2;
 }
