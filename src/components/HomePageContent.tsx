@@ -1,14 +1,14 @@
-import styles from './HomePageContent.module.css'
-import Carousel from '../components/Carousel'
-import Features from '../components/Features'
-import Trendings from '../components/Trendings'
-const HomePageContent = () => {
+import styles from '../styles/HomePageContent.module.css'
+import CarouselArea from './CarouselArea'
+import FeaturesArea from './FeaturesArea'
+import TrendingsArea from './TrendingsArea'
+function HomePageContent () {
   return (
     <div className={styles.body}>
       <div className={styles.container}>
-        <Carousel />
-        <Trendings />
-        <Features />
+        <CarouselArea />
+        <TrendingsArea />
+        <FeaturesArea />
       </div>
     </div>
   )

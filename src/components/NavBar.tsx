@@ -1,6 +1,6 @@
-import styles from './NavBar.module.css'
+import styles from '../styles/NavBar.module.css'
 import Image from 'next/image'
-const NavBar = () => {
+function NavBar () {
   const navList: Array<string> = ['NEWS', 'CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
   return (
     <div className={styles.container}>

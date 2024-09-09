@@ -1,0 +1,16 @@
+.body {
+  height: 92%;
+  min-height: 900px;
+  background-color: #fff;
+  padding: 30px;
+}
+.container {
+  display: grid;
+  height: 100%;
+  gap: 20px;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: 4fr 5fr;
+  grid-template-areas:
+    "topLeft topLeft topLeft topLeft topLeft topRight topRight topRight topRight"
+    "botLeft botLeft botLeft botRight botRight botRight botRight botRight botRight";
+}
