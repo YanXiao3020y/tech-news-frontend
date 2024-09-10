@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   padding: 30px;
+  position: relative;
 }
 .image {
   height: 100%;
@@ -26,13 +27,45 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+.descr .content::-webkit-scrollbar {
+  display: none;
+}
 .descr .title {
   font-family: 'Iceberg';
   font-size: 2.4rem;
   letter-spacing: 2px;
-  margin: 20px 0 30px;
+  margin: 20px 0;
 }
 .descr .content {
   font-family: 'Inder';
   font-size: 1rem;
+  line-height: 1.5;
+  overflow: auto;
+}
+.carousel i {
+  width: 10px;
+  height: 10px;
+  border-radius: 30px;
+  background-color: #d9d9d9a7;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+.carousel i.activeItem {
+  width: 20px;
+  background-color: #c9c9c9;
+}
+
+@media (max-width: 1200px) {
+  .carousel {
+    padding: 15px;
+  }
+  .descr .title {
+    font-size: 1.6rem;
+  }
+  .descr .content {
+    font-size: 0.8rem;
+  }
 }
