@@ -1,18 +1,21 @@
 import styles from '../styles/NavBar.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 function NavBar () {
   const navList: Array<string> = ['NEWS', 'CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <Image src="/favicon.ico" alt="icon" width="50" height="50"/>
-        <h1>NEWS</h1>
-      </div>
-      <div className={styles.nav}>
+      <Link href="/">
+        <div className={`${styles.title} ${styles['no-select']}`}>
+          <Image src="/favicon.ico" alt="icon" width="50" height="50"/>
+          <h1>NEWS</h1>
+        </div>
+      </Link>
+      <div className={`${styles.nav} ${styles['no-select']}`}>
         {navList.map((item, index) => (
-          <div className={styles.item} key={index}>
+          <Link className={styles.item} href={`/${item.toLowerCase()}`} key={index}>
             {item}
-          </div>
+          </Link>
         ))}
       </div>
     </div>
