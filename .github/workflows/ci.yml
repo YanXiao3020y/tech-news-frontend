@@ -1,0 +1,74 @@
+name: Build and Push Docker Image with Incremental Tagging and Version Bump
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: ????
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Step 2: ????? Git ??
+    - name: Get the latest Git tag
+      id: get_tag
+      run: |
+        # ??????????????????v1.0
+        TAG=$(git describe --tags `git rev-list --tags --max-count=1` || echo "v1.0")
+        echo "Latest tag: $TAG"
+        echo "CURRENT_TAG=$TAG" >> $GITHUB_ENV
+
+    # Step 3: ??????????
+    - name: Calculate new tag with version bump
+      id: calc_new_tag
+      run: |
+        # ??????????????
+        CURRENT_TAG=${{ env.CURRENT_TAG }}
+        VERSION=$(echo $CURRENT_TAG | sed 's/v//g')  # ??v??
+        MAJOR=$(echo $VERSION | cut -d. -f1)  # ????
+        MINOR=$(echo $VERSION | cut -d. -f2)  # ????
+        
+        # ????????????
+        if [ $MINOR -lt 9 ]; then
+          NEW_MINOR=$((MINOR+1))  # ?????
+          NEW_TAG="v$MAJOR.$NEW_MINOR"
+        else
+          NEW_MAJOR=$((MAJOR+1))  # ??????9??????+1
+          NEW_MINOR=0  # ???????0
+          NEW_TAG="v$NEW_MAJOR.$NEW_MINOR"
+        fi
+
+        echo "New tag: $NEW_TAG"
+        echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+    # Step 4: ?? DockerHub
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # Step 5: ?? Docker ????????
+    - name: Build and tag Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }} .
+        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }} ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
+
+    # Step 6: ?? Docker ??? DockerHub
+    - name: Push Docker image
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }}
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
+
+    # Step 7: ???? Git ????????
+    - name: Create new Git tag
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git tag ${{ env.NEW_TAG }}
+        git push origin ${{ env.NEW_TAG }}
