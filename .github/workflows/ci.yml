@@ -19,7 +19,7 @@ jobs:
       id: get_tag
       run: |
         # ??????????????????v1.0
-        TAG=$(git describe --tags `git rev-list --tags --max-count=1` || echo "v1.0")
+        TAG=$(git describe --tags `git rev-list --tags --max-count=1` || echo "v0.0")
         echo "Latest tag: $TAG"
         echo "CURRENT_TAG=$TAG" >> $GITHUB_ENV
 
@@ -63,12 +63,16 @@ jobs:
     - name: Push Docker image
       run: |
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
 
-    # Step 7: ???? Git ????????
-    - name: Create new Git tag
+    # Step 7: ?? GitHub Token ??????
+    - name: Set up Git credentials
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+    # Step 8: ???? Git ????????
+    - name: Create new Git tag
+      run: |
         git tag ${{ env.NEW_TAG }}
         git push origin ${{ env.NEW_TAG }}
