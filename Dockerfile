@@ -1,5 +1,4 @@
 FROM node:20.17-slim
-# FROM znck/pnpm
 
 WORKDIR /app
 
