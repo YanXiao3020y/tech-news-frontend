@@ -97,10 +97,10 @@ function CarouselArea() {
   }, [activeIndex, toggleTo, data])
   return (
     <div className={styles.carousel}>
-      <div
+      {/* <div
         className={styles.image}
         style={{ backgroundImage: `url(${imgURL})` }}
-      ></div>
+      ></div> */}
       <div className={styles.descr}>
         <div className={styles.title}>
           <span>{title}</span>

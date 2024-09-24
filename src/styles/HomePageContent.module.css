@@ -11,6 +11,6 @@
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: 4fr 5fr;
   grid-template-areas:
-    "topLeft topLeft topLeft topLeft topLeft topRight topRight topRight topRight"
+    "top top topLeft topLeft topLeft topLeft topLeft topR topR"
     "botLeft botLeft botLeft botRight botRight botRight botRight botRight botRight";
 }
