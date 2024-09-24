@@ -72,7 +72,7 @@ function CarouselArea() {
           '一款留学信息网站前端HTML模板，基于Bootstrap构造，自适应手机端设备。'
       }
     ])
-  const [imgURL, setImgURL] = useState<string | undefined>('')
+  // const [imgURL, setImgURL] = useState<string | undefined>('')
   const [title, setTitle] = useState<string | undefined>('Ubuntu 24.04 LTS')
   const [content, setContent] = useState<string | undefined>('')
   const [activeIndex, setActiveIndex] = useState<number>(0)
@@ -80,7 +80,7 @@ function CarouselArea() {
     (index: number): void => {
       if (data[index] !== undefined) {
         setActiveIndex(index)
-        setImgURL(data[index].imageUrl)
+        // setImgURL(data[index].imageUrl)
         setTitle(data[index].title)
         setContent(data[index].descr)
       }
