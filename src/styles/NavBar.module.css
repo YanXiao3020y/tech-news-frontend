@@ -5,14 +5,14 @@
 .container {
   height: 8%;
   min-height: 70px;
-  border-bottom: #e2e2e2 2px solid;
+  border-bottom: #e2e2e2 1px solid;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
 }
 .title {
-  width: 160px;
+  width: 140px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,8 +20,8 @@
 .title h1 {
   font-family: 'Inknut Antiqua';
   line-height: 80px;
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.3rem;
+  font-weight: 700;
   letter-spacing: 2px;
 }
 .container a {
@@ -37,7 +37,7 @@
   font-family: 'Inknut Antiqua';
   font-size: 1rem;
   height: 100%;
-  font-weight: 700;
+  font-weight: 600;
   position: relative
 }
 
@@ -49,4 +49,9 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+.icon {
+  height: 18px;
+  width: 18px;
+  margin-left: 10px;
 }
