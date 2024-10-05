@@ -21,7 +21,7 @@ function NavBar() {
           const isNewsItem = item === 'NEWS'
           return (
             <Link
-              className={styles.item}
+              className={`${styles.item} ${isNewsItem ? styles.isNewsItem : ''}`}
               href={`/${isNewsItem ? '' : item.toLowerCase()}`}
               key={index}
             >

@@ -46,14 +46,14 @@
   width: 129px;
   height: 160px;
   border-radius: 10px;
-  box-shadow: 0 3px 7px 1px #e5e5e5;
+  box-shadow: 0 8px 7px 1px #e5e5e5;
   background-color: rgba(255, 255, 255);
   position: absolute;
   left: 50%;
-  transform: translateX(-60%);
+  transform: translate(-60%, 15px);
   z-index: 1;
 }
-.nav:hover .panel {
+.isNewsItem:hover .panel {
   display: block;
 }
 .icon {
