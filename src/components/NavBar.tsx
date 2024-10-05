@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function NavBar() {
   const navList: Array<string> = ['NEWS', 'CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
-  const [hovered, setHovered] = useState(false)
   return (
     <div className={styles.container}>
       <Link href="/">
@@ -20,21 +19,17 @@ function NavBar() {
       <div className={`${styles.nav} ${styles['no-select']}`}>
         {navList.map((item, index) => {
           const isNewsItem = item === 'NEWS'
-          const handleMouseOver = () => isNewsItem && setHovered(true)
-          const handleMouseLeave = () => isNewsItem && setHovered(false) 
           return (
             <Link
               className={styles.item}
               href={`/${isNewsItem ? '' : item.toLowerCase()}`}
               key={index}
-              onMouseOver={handleMouseOver}
-              onMouseLeave={handleMouseLeave}
             >
               {item}
               {isNewsItem && (
                 <>
                   <FontAwesomeIcon className={styles.icon} icon={faChevronDown} />
-                  {hovered && <div className={styles.panel}></div>}
+                  <div className={styles.panel}></div>
                 </>
               )}
             </Link>
