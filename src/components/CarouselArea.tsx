@@ -35,8 +35,8 @@ function CarouselArea() {
         'Several startups are at the forefront of transforming the food industry with plant-based meats, lab-grown proteins, and sustainable farming practices that aim to revolutionize what we eat and how we produce food.'
     }
   ])
-  const [title, setTitle] = useState<string | undefined>('Ubuntu 24.04 LTS')
-  const [content, setContent] = useState<string | undefined>('')
+  const [title, setTitle] = useState<string | undefined>(data[0].title)
+  const [content, setContent] = useState<string | undefined>(data[0].descr)
   const [activeIndex, setActiveIndex] = useState<number>(0)
   const toggleTo = useCallback(
     (index: number): void => {
