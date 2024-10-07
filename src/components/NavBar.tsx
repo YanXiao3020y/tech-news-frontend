@@ -3,7 +3,6 @@ import styles from '../styles/NavBar.module.css'
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function NavBar() {
