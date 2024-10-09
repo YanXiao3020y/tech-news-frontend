@@ -3,6 +3,7 @@ import styles from '../styles/NavBar.module.css'
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ExpandMenu from './ExpandMenu'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function NavBar() {
@@ -28,7 +29,7 @@ function NavBar() {
               {isNewsItem && (
                 <>
                   <FontAwesomeIcon className={styles.icon} icon={faChevronDown} />
-                  <div className={styles.panel}></div>
+                  <ExpandMenu className={styles.panel}></ExpandMenu>
                 </>
               )}
             </Link>
