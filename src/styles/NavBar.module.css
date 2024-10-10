@@ -43,11 +43,6 @@
   display: inline-block;
   line-height: 75px;
 }
-
-.isNewsItem:hover .panel {
-  display: flex;
-  flex-direction: column;
-}
 .icon {
   height: 18px;
   width: 18px;
