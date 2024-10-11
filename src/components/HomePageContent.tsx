@@ -4,13 +4,13 @@ import FeaturesArea from './FeaturesArea'
 import TrendingsArea from './TrendingsArea'
 function HomePageContent() {
   return (
-    <div className={styles.body}>
       <div className={styles.container}>
         <CarouselArea />
-        <TrendingsArea />
-        <FeaturesArea />
+        <div className={styles["bottom-container"]}>
+          <TrendingsArea />
+          <FeaturesArea />
+        </div>
       </div>
-    </div>
   )
 }
 

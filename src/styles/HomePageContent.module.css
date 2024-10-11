@@ -1,15 +1,17 @@
-.body {
-  height: 920px;
-  background-color: #fff;
-  padding: 30px;
-}
 .container {
-  display: grid;
-  height: 100%;
-  gap: 20px;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: 4fr 5fr;
-  grid-template-areas:
-    "top top topLeft topLeft topLeft topLeft topLeft topR topR"
-    "botLeft botLeft botLeft botRight botRight botRight botRight botRight botRight";
+  display: flex;
+  flex-direction: column;
+  height: max(100vh, 920px);
+  padding-bottom: 50px;
+  justify-content: flex-end;
+  gap: 30px;
+  align-items: center;
+}
+
+.bottom-container {
+  display: flex;
+  width: 80%;
+  /* height: 50%;  */
+  justify-content: center;
+  gap: 30px;
 }
