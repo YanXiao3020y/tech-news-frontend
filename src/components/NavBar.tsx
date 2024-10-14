@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function NavBar() {
-  const navList: Array<string> = ['NEWS', 'CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
+  const navList: Array<string> = ['CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
   const [isActive, setIsActive] = useState(false)
   return (
     <div className={styles.container}>
@@ -19,32 +19,27 @@ function NavBar() {
         </div>
       </Link>
       <div className={`${styles.nav} ${styles['no-select']}`}>
+        <div
+          className={styles.item}
+          onMouseOver={() => {
+            setIsActive(true)
+          }}
+          onMouseLeave={() => {
+            setIsActive(false)
+          }}
+        >
+          NEWS
+          <FontAwesomeIcon className={styles.icon} icon={faChevronDown} />
+          <ExpandMenu status={isActive} />
+        </div>
         {navList.map((item, index) => {
-          const isNewsItem = item === 'NEWS'
           return (
             <Link
               className={styles.item}
-              href={`/${isNewsItem ? '' : item.toLowerCase()}`}
+              href={`/${item.toLowerCase()}`}
               key={index}
-              onMouseOver={() => {
-                if (isNewsItem)
-                  setIsActive(true)
-              }}
-              onMouseLeave={() => {
-                if (isNewsItem)
-                  setIsActive(false)
-              }}
             >
               {item}
-              {isNewsItem && (
-                <>
-                  <FontAwesomeIcon
-                    className={styles.icon}
-                    icon={faChevronDown}
-                  />
-                  <ExpandMenu status={isActive}></ExpandMenu>
-                </>
-              )}
             </Link>
           )
         })}

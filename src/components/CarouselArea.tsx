@@ -42,7 +42,6 @@ function CarouselArea() {
     (index: number): void => {
       if (data[index] !== undefined) {
         setActiveIndex(index)
-        // setImgURL(data[index].imageUrl)
         setTitle(data[index].title)
         setContent(data[index].descr)
       }
@@ -57,7 +56,7 @@ function CarouselArea() {
       toggleTo((activeIndex + 1) % data.length)
     }, 2000)
     return () => clearTimeout(timeoutId)
-  }, [activeIndex, toggleTo, data])
+  }, [activeIndex, data])
   return (
     <div className={styles.carousel}>
       <div className={styles.title}>
