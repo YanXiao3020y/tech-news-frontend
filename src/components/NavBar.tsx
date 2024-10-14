@@ -23,16 +23,16 @@ function NavBar() {
           const isNewsItem = item === 'NEWS'
           return (
             <Link
-              className={`${styles.item} ${
-                isNewsItem ? styles.isNewsItem : ''
-              }`}
+              className={styles.item}
               href={`/${isNewsItem ? '' : item.toLowerCase()}`}
               key={index}
               onMouseOver={() => {
-                setIsActive(true)
+                if (isNewsItem)
+                  setIsActive(true)
               }}
               onMouseLeave={() => {
-                setIsActive(false)
+                if (isNewsItem)
+                  setIsActive(false)
               }}
             >
               {item}

@@ -8,7 +8,7 @@ function HomePageContent() {
         <CarouselArea />
         <div className={styles["bottom-container"]}>
           <TrendingsArea />
-          <FeaturesArea />
+          {/* <FeaturesArea /> */}
         </div>
       </div>
   )
