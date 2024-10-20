@@ -29,6 +29,10 @@
   width: 80%;
 }
 
+.list {
+  list-style-type: decimal; 
+}
+
 .listItem {
   margin-bottom: 20px;
 }

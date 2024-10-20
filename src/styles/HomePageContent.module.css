@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: max(100vh, 920px);
+  height: max(90vh, 925px);
   padding-bottom: 50px;
   justify-content: flex-end;
   gap: 50px;

@@ -44,7 +44,7 @@ function TrendingsArea() {
         <FontAwesomeIcon icon={faArrowTrendUp} className={styles.icon} />
       </div>
       <div className={styles.content}>
-        <ol>
+        <ol className={styles.list}>
           {
             data.map((item, index) => {
               return (

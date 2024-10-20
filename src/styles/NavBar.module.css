@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
 .no-select {
   cursor: pointer;
   user-select: none;
 }
 .container {
+  background-color: #fff;
   height: 75px;
   width: 100vw;
   min-height: 70px;
@@ -11,7 +13,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 10;
 }
 .title {
