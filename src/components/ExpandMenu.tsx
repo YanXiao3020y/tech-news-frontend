@@ -1,7 +1,7 @@
 import styles from '../styles/ExpandMenu.module.css'
 import Link from 'next/link'
 function ExpandMenu({ status }: { status?: boolean}) {
-  const items = ['news', 'products', 'ideas']
+  const items = ['news', 'products', 'tools']
   return (
     <div className={`${styles.panel} ${status ? styles.active : ''}`}>
       {items.map((item, index) => {

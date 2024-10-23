@@ -1,117 +1,87 @@
 'use client'
-import NavBar from '@/components/NavBar'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 
-type dataType = {
+type DataType = {
   _id: string
   link: string
   published: string
-  // summary: string
   title: string
 }
 
+async function fetchNews() {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  const res = await fetch(`${baseUrl}/newest`, {
+    cache: 'no-store' // 避免缓存，确保每次都获取最新数据
+  })
+  if (!res.ok) {
+    throw new Error('Failed to fetch news')
+  }
+  return res.json() // to json
+}
+
 export default function NewsPage() {
-  const [news, setNews] = useState<Array<dataType>>([])
+  const [news, setNews] = useState<DataType[]>([]) // 存储新闻数据
+  const [loading, setLoading] = useState<boolean>(true) // 存储加载状态
+  const [error, setError] = useState<string | null>(null) // 存储错误信息
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function loadNews() {
       try {
-        const res = await axios.get('http://localhost:5001/newest')
-        console.log(typeof res)
-        setNews(res.data)
+        setLoading(true) // 开始加载
+        const data = await fetchNews()
+        setNews(data) // 设置新闻数据
       } catch (err) {
-        console.error(err)
+        setError((err as Error).message) // 设置错误信息
+      } finally {
+        setLoading(false) // 加载结束
       }
     }
 
-    fetchData()
+    loadNews()
+  }, []) // 空依赖数组，确保只在组件首次挂载时运行
 
-    // setNews([
-    //   {
-    //     _id: '1',
-    //     link: 'https://example.com/article-1',
-    //     published: '2024-10-01',
-    //     summary:
-    //       'AI technology is advancing at an unprecedented rate, revolutionizing industries from healthcare to finance.',
-    //     title: 'AI Breakthroughs Reshape Global Industries'
-    //   },
-    //   {
-    //     _id: '2',
-    //     link: 'https://example.com/article-2',
-    //     published: '2024-09-25',
-    //     summary:
-    //       'The latest smartphones are setting new standards with foldable screens and 5G connectivity, paving the way for future innovations.',
-    //     title: 'Next-Gen Smartphones with Foldable Displays Hit the Market'
-    //   },
-    //   {
-    //     _id: '3',
-    //     link: 'https://example.com/article-3',
-    //     published: '2024-09-20',
-    //     summary:
-    //       'Scientists have successfully created quantum computers that outperform traditional machines in complex calculations.',
-    //     title: 'Quantum Computing Achieves Major Milestone in Performance'
-    //   },
-    //   {
-    //     _id: '4',
-    //     link: 'https://example.com/article-4',
-    //     published: '2024-09-15',
-    //     summary:
-    //       'SpaceX announces new plans for a manned mission to Mars, aiming to establish a human colony within the next decade.',
-    //     title: 'SpaceX Unveils Ambitious Mars Colonization Plan'
-    //   },
-    //   {
-    //     _id: '5',
-    //     link: 'https://example.com/article-5',
-    //     published: '2024-09-10',
-    //     summary:
-    //       'The integration of blockchain technology into supply chains is enhancing transparency and reducing fraud across industries.',
-    //     title: 'Blockchain Revolutionizes Global Supply Chains'
-    //   },
-    //   {
-    //     _id: '6',
-    //     link: 'https://example.com/article-6',
-    //     published: '2024-09-05',
-    //     summary:
-    //       'Renewable energy technologies are growing rapidly, with solar and wind leading the charge in reducing global carbon emissions.',
-    //     title: 'Renewable Energy Innovation Drives Global Sustainability'
-    //   },
-    //   {
-    //     _id: '7',
-    //     link: 'https://example.com/article-7',
-    //     published: '2024-09-01',
-    //     summary:
-    //       'Self-driving cars are becoming more reliable and accessible, with major automakers planning full-scale rollouts by 2025.',
-    //     title: 'Self-Driving Cars Poised for Mass Adoption by 2025'
-    //   }
-    // ])
-  }, [])
-  return (
-    <>
-      <NavBar />
-      <div className="w-full min-h-screen bg-gray-100">
-        <div className="max-w-3xl mx-auto p-8 text-gray-800">
-          <h1 className="text-4xl font-bold text-center mb-10">Tech News</h1>
-          <ul>
-            {news.map((item) => (
-              <li
-                key={item._id}
-                className="bg-white p-6 mb-6 rounded-lg shadow-lg transition-shadow hover:shadow-xl"
-              >
-                <span className="text-sm text-gray-500">{item.published.slice(0, -6)}</span>
-                <Link
-                  href={item.link}
-                  className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
-                >
-                  {item.title}
-                </Link>
-                <p className="text-gray-600 mt-4"></p>
-              </li>
-            ))}
-          </ul>
-        </div>
+  if (loading) {
+    return (
+      <div className="w-full h-screen bg-gray-50 flex justify-center items-center">
+        <div className="w-40 h-20 bg-white rounded-2xl flex justify-center items-center shadow-lg">Loading...</div>
       </div>
-    </>
-  )
+    )
+  }
+  if (error) {
+    return (
+      <div className="w-full h-screen bg-gray-50 flex justify-center items-center">
+        <div className="w-40 h-20 bg-white rounded-2xl flex justify-center items-center shadow-lg">Error: {error}</div>
+      </div>
+    )
+ // 如果请求失败，显示错误信息
+  } else
+    return (
+      <>
+        <div className="w-full min-h-screen bg-gray-100">
+          <div className="max-w-3xl mx-auto p-8 text-gray-800">
+            <h1 className="text-4xl font-bold text-center mb-10"></h1>
+            <ul>
+              {news.map((item) => (
+                <li
+                  key={item._id}
+                  className="bg-white p-6 mb-6 rounded-lg shadow-lg transition-shadow hover:shadow-xl"
+                >
+                  <span className="text-sm text-gray-500">
+                    {item.published.slice(0, -6)}
+                  </span>
+                  <Link
+                    href={item.link}
+                    className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
+                  >
+                    {item.title}
+                  </Link>
+                  <p className="text-gray-600 mt-4"></p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </>
+    )
 }

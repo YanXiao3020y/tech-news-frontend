@@ -3,7 +3,6 @@
   flex-direction: column;
   height: max(90vh, 925px);
   padding-bottom: 50px;
-  justify-content: flex-end;
   gap: 50px;
   align-items: center;
 }
