@@ -11,11 +11,10 @@ function NavBar() {
   const navList: Array<string> = ['CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
   const [isActive, setIsActive] = useState(false)
   return (
-    <div className={styles.container}>
+    <div className="bg-white h-[75px] w-full min-h-[70px] border-b-2 border-gray-50 flex justify-center items-center sticky top-0 z-10">
       <Link href="/">
-        <div className={`${styles.title} ${styles['no-select']}`}>
-          <Image src="/favicon.ico" alt="icon" width="36" height="36" />
-          <h1>NEWS</h1>
+        <div className="no-select absolute top-0 left-6 w-10 h-[75px] flex items-center justify-center">
+          <Image src="/favicon.ico" alt="icon" width="40" height="40" />
         </div>
       </Link>
       <div className={`${styles.nav} ${styles['no-select']}`}>

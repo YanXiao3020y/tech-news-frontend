@@ -58,17 +58,17 @@ function CarouselArea() {
     return () => clearTimeout(timeoutId)
   }, [activeIndex, data])
   return (
-    <div className="w-[700px] h-[350px] bg-white rounded-lg flex flex-col p-[50px] relative overflow-hidden mt-10 shadow-lg z-[1]">
-      <div className="w-3/4">
+    <div className="w-[700px] h-[350px] bg-white rounded-lg flex flex-col items-start px-[60px] py-[50px] relative overflow-hidden mt-10 shadow-lg shadow-gray-200 z-[1]">
+      <div className="w-7/8 font-[Iceberg] text-3xl mb-8">
         <span>{title}</span>
       </div>
-      <div className={styles.descr}>
+      <div className="w-4/5 font-[Inder] text-base overflow-auto">
         <span>{content}</span>
       </div>
       {data.map((item, index) => {
         return (
           <i
-            className={`${index === activeIndex ? 'w-6 bg-gray-300' : ''} w-4 h-3 rounded-full bg-gray-400 absolute bottom-2 left-1/2 transform -translate-x-1/2 transition-all duration-300 ease-in-out`}
+            className={`${index === activeIndex ? 'w-6 !bg-gray-200/80' : ''} w-4 h-3 border-2 border-white rounded-full bg-gray-300 absolute bottom-3 left-1/2 transform -translate-x-1/2 transition-all duration-300 ease-in-out`}
             key={index}
             onClick={() => toggleTo(index)}
             style={{

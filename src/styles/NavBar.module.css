@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
-.no-select {
+/* .no-select {
   cursor: pointer;
   user-select: none;
 }
@@ -29,7 +29,7 @@
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 2px;
-}
+} */
 .container a {
   color: unset;
   text-decoration: unset;

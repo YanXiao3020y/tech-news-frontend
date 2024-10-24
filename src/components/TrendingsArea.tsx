@@ -1,60 +1,54 @@
 'use client'
 import styles from '../styles/TrendingsArea.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons'
-interface TrendingItem {
-  title?: string
-  date?: string
-  link?: string
+type DataType = {
+  _id: string
+  link: string
+  published: string
+  title: string
 }
+
+const fetchData = async () => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  const res = await fetch(`${baseUrl}/newest`, {
+    cache: 'no-store'
+  })
+  if (!res.ok) {
+    throw new Error('Failed to fetch data.')
+  }
+  return res.json()
+}
+
 function TrendingsArea() {
-  const [data] = useState<Array<TrendingItem>>([
-    {
-      title: "UN Condemns 'Abhorrent' Terrorist Attacks in Pakistan",
-      date: 'September 30, 2023',
-      link: 'https://www.globalissues.org/news/2023/09/30'
-    },
-    {
-      title: 'New Global Framework Adopted to Reduce Harmful Chemicals',
-      date: 'September 30, 2023',
-      link: 'https://www.globalissues.org/news/2023/09/30'
-    },
-    {
-      title: 'AIADMK Quits BJP-Led NDA Alliance in Tamil Nadu',
-      date: 'September 25, 2023',
-      link: 'https://news.abplive.com/india-news/top-news-headlines-25-september-2023-1631109'
-    },
-    {
-      title:
-        'U.S. House Speaker Kevin McCarthy Launches Impeachment Inquiry Against President Biden',
-      date: 'September 12, 2023',
-      link: 'https://www.infoplease.com/current-events/september-2023-news'
-    },
-    {
-      title: 'Texas Ordered to Move Border Buoys',
-      date: 'September 6, 2023',
-      link: 'https://www.theguardian.com/us-news/2023/sep/06'
+  const [data, setData] = useState<DataType[]>([])
+  useEffect(() => {
+    const loadTrendings = async () => {
+      let res = await fetchData() as Array<DataType>
+      res.sort((a: DataType, b: DataType) => new Date(b.published).getTime() - new Date(a.published).getTime())
+      res = res.slice(0, 5) 
+      setData(res)
+      console.log(data)
     }
-  ])
+    loadTrendings()
+  }, [])
   return (
-    <div className={styles.trendings}>
+    <div className="w-[700px] h-[580px] bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center pb-4">
       <div className={styles.header}>
         <h1 className={styles.title}>Trendings</h1>
         <FontAwesomeIcon icon={faArrowTrendUp} className={styles.icon} />
       </div>
       <div className={styles.content}>
         <ol className={styles.list}>
-          {
-            data.map((item, index) => {
-              return (
-                <li className={styles.listItem} key={index}>
-                  <a href={item.link}>{item.title}</a>
-                  <p>{item.date}</p>
-                </li>
-              )
-            }) 
-          }
+          {data.map((item, index) => {
+            return (
+              <li className={styles.listItem} key={index}>
+                <a href={item.link}>{item.title}</a>
+                <p>{item.published}</p>
+              </li>
+            )
+          })}
         </ol>
       </div>
     </div>
