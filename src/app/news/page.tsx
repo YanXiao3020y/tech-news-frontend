@@ -1,6 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
+import ClientMotionWrapper from '@/components/ClientMotionWrapper'
+import React from 'react'
 
 type DataType = {
   _id: string
@@ -21,51 +23,84 @@ async function fetchNews() {
 }
 
 export default function NewsPage() {
-  const [news, setNews] = useState<DataType[]>([]) // 存储新闻数据
-  const [loading, setLoading] = useState<boolean>(true) // 存储加载状态
-  const [error, setError] = useState<string | null>(null) // 存储错误信息
+  const [news, setNews] = useState<DataType[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+  const boxesRef = useRef<HTMLLIElement[]>([])
+  const addToRefs = (el: HTMLLIElement) => {
+    if (el && !boxesRef.current.includes(el)) {
+      boxesRef.current.push(el)
+    }
+  }
 
   useEffect(() => {
+    function checkBoxes() {
+      const triggerBottom = (window.innerHeight / 5) * 4
+      boxesRef.current.forEach((box) => {
+        const boxTop = box.getBoundingClientRect().top
+        if (boxTop > triggerBottom) {
+          box.classList.remove('show')
+        } else {
+          box.classList.add('show')
+        }
+      })
+    }
     async function loadNews() {
       try {
-        setLoading(true) // 开始加载
+        setLoading(true)
         const data = await fetchNews()
-        setNews(data) // 设置新闻数据
+        setNews(data)
       } catch (err) {
-        setError((err as Error).message) // 设置错误信息
+        setError((err as Error).message)
       } finally {
-        setLoading(false) // 加载结束
+        setLoading(false)
       }
     }
-
-    loadNews()
-  }, []) // 空依赖数组，确保只在组件首次挂载时运行
+    const addAnimation = async () => {
+      await loadNews()
+      window.addEventListener('scroll', checkBoxes)
+      checkBoxes()
+    }
+    addAnimation()
+    return () => {
+      window.removeEventListener('scroll', checkBoxes)
+    }
+  }, [])
 
   if (loading) {
     return (
-      <div className="w-full h-screen bg-gray-50 flex justify-center items-center">
-        <div className="w-40 h-20 bg-white rounded-2xl flex justify-center items-center shadow-lg">Loading...</div>
-      </div>
+      <ClientMotionWrapper>
+        <div className="w-full h-screen bg-gray-100 flex justify-center items-center">
+          <div className="rounded-2xl flex justify-center items-center">
+            Loading...
+          </div>
+        </div>
+      </ClientMotionWrapper>
     )
   }
   if (error) {
     return (
-      <div className="w-full h-screen bg-gray-50 flex justify-center items-center">
-        <div className="w-40 h-20 bg-white rounded-2xl flex justify-center items-center shadow-lg">Error: {error}</div>
+      <div className="w-full h-screen bg-gray-100 flex justify-center items-center">
+        <div className="w-40 h-20 bg-white rounded-2xl flex justify-center items-center shadow-lg">
+          Error: {error}
+        </div>
       </div>
     )
- // 如果请求失败，显示错误信息
   } else
     return (
-      <>
+      <ClientMotionWrapper>
         <div className="w-full min-h-screen bg-gray-100">
           <div className="max-w-3xl mx-auto p-8 text-gray-800">
             <h1 className="text-4xl font-bold text-center mb-10"></h1>
             <ul>
-              {news.map((item) => (
+              {news.map((item, index) => (
                 <li
                   key={item._id}
-                  className="bg-white p-6 mb-6 rounded-lg shadow-lg transition-shadow hover:shadow-xl"
+                  className="bg-white p-6 mb-6 rounded-lg shadow-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl"
+                  ref={addToRefs}
+                  style={{
+                    transform: `translateX(${index % 2 === 0 ? '' : '-'}1500px)`
+                  }}
                 >
                   <span className="text-sm text-gray-500">
                     {item.published.slice(0, -6)}
@@ -82,6 +117,6 @@ export default function NewsPage() {
             </ul>
           </div>
         </div>
-      </>
+      </ClientMotionWrapper>
     )
 }

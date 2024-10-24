@@ -1,5 +1,5 @@
 'use client'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
@@ -14,16 +14,14 @@ export default function ClientMotionWrapper({
     setCurrentPath(path)
   }, [path])
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={currentPath}
-        initial={{ opacity: 0, x: 200 }}
-        animate={{ opacity: 1, x: 0 }}
-        // exit={{ opacity: 0, x: -500 }}
-        transition={{ duration: 0.5 }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={currentPath}
+      initial={{ opacity: 0, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -200 }}
+      transition={{ duration: 0.5 }}
+    >
+      {children}
+    </motion.div>
   )
 }
