@@ -17,9 +17,9 @@ function NavBar() {
           <Image src="/favicon.ico" alt="icon" width="40" height="40" />
         </div>
       </Link>
-      <div className={`${styles.nav} ${styles['no-select']}`}>
+      <div className="no-select w-[600px] h-full flex justify-around">
         <div
-          className={styles.item}
+          className="font-inknut text-[1rem] h-full relative inline-block leading-[75px]"
           onMouseOver={() => {
             setIsActive(true)
           }}
@@ -28,13 +28,13 @@ function NavBar() {
           }}
         >
           NEWS
-          <FontAwesomeIcon className={styles.icon} icon={faChevronDown} />
+          <FontAwesomeIcon className="h-5 w-5 ml-2.5" icon={faChevronDown} />
           <ExpandMenu status={isActive} />
         </div>
         {navList.map((item, index) => {
           return (
             <Link
-              className={styles.item}
+              className="font-inknut text-[1rem] h-full relative inline-block leading-[75px]"
               href={`/${item.toLowerCase()}`}
               key={index}
             >

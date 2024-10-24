@@ -59,7 +59,7 @@ function CarouselArea() {
   }, [activeIndex, data])
   return (
     <div className="w-[700px] h-[350px] bg-white rounded-lg flex flex-col items-start px-[60px] py-[50px] relative overflow-hidden mt-10 shadow-lg shadow-gray-200 z-[1]">
-      <div className="w-7/8 font-[Iceberg] text-3xl mb-8">
+      <div className="w-7/8 font-[Inder] text-3xl mb-8">
         <span>{title}</span>
       </div>
       <div className="w-4/5 font-[Inder] text-base overflow-auto">

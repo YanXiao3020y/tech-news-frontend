@@ -26,9 +26,9 @@ export default function RootLayout({
       <html lang="en">
         <head>
           <link
+            href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inder&family=Inknut+Antiqua&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inder&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap"
-          />
+          ></link>
         </head>
         <body className="bg-gray-100 overflow-x-hidden">
           <NavBar />
