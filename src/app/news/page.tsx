@@ -104,7 +104,7 @@ export default function NewsPage() {
               {news.map((item, index) => (
                 <li
                   key={item._id}
-                  className="bg-white p-6 mb-6 rounded-lg shadow-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl"
+                  className="bg-white border p-6 mb-6 rounded-lg shadow-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl"
                   ref={addToRefs}
                   style={{
                     transform: `translateX(${index % 2 === 0 ? '' : '-'}1500px)`

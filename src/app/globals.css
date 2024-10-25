@@ -12,3 +12,6 @@ body {
 .show {
   transform: none !important;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* 隐藏 Chrome, Safari 和 Edge 中的滚动条 */
+}

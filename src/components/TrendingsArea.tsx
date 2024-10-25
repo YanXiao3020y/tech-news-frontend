@@ -51,7 +51,7 @@ function TrendingsArea() {
     loadTrendings()
   }, [])
   return (
-    <div className="w-[700px] h-[580px] bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
+    <div className="w-[700px] h-[580px] border bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
       <div className="flex items-center w-full px-10 py-8">
         <h1 className="font-[Inder] text-3xl mr-3">Trendings</h1>
         <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
