@@ -4,7 +4,7 @@ import ClientMotionWrapper from '@/components/ClientMotionWrapper'
 import TrendingsArea from '@/components/TrendingsArea'
 export default function Home() {
   return (
-    <div className="flex flex-col h-[max(90vh,925px)] pb-[50px] gap-[50px] items-center">
+    <div className="flex flex-col h-[max(90vh,1000px)] pb-5 items-center">
       <CarouselArea />
       <TrendingsArea />
       {/* <div className={styles["bottom-container"]}> */}

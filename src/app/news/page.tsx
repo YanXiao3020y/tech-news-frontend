@@ -81,7 +81,7 @@ export default function NewsPage() {
   if (error) {
     return (
       <div className="w-full h-screen bg-gray-100 flex justify-center items-center">
-        <div className="w-40 h-20 bg-white rounded-2xl flex justify-center items-center shadow-lg">
+        <div className="p-5 bg-white rounded-2xl flex justify-center items-center shadow-lg">
           Error: {error}
         </div>
       </div>
@@ -89,9 +89,9 @@ export default function NewsPage() {
   } else
     return (
       <ClientMotionWrapper>
-        <div className="w-full min-h-screen bg-gray-100">
-          <div className="max-w-3xl mx-auto p-8 text-gray-800">
-            <h1 className="text-4xl font-[Iceberg] font-bold mb-10">News</h1>
+        <div className="mx-auto max-w-4xl p-8">
+          <h1 className="text-4xl font-[Iceberg] font-bold mb-10">News</h1>
+          <div className="max-w-3xl mx-auto text-gray-800">
             <ul>
               {news.map((item, index) => (
                 <li

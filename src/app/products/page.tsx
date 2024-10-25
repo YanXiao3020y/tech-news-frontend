@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
+import ProductCard from '@/components/ProductCard'
+import { li } from 'framer-motion/client'
 type Products = {
   id: string
   author: string
@@ -25,22 +27,26 @@ export default function ProductsPage() {
     async function loadProducts() {
       const data = await fetchProducts()
       setProducts(data)
-    } 
+    }
     loadProducts()
   })
   return (
-    <>
-      <h1>Products</h1>
-      <ul>{products.map((item) => {
-        return (
-          <li>
-            <p>{item.author}</p>
-            <p>{item.date_published}</p>
-            <p>{item.title}</p>
-            <p>{item.url}</p>
-          </li>
-        )
-      })}</ul>
-    </>
+    <div className="max-w-6xl mx-auto p-8 text-gray800">
+      <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Products</h1>
+      <div className="grid grid-cols-3 max-w-fit gap-6 mx-auto text-gray-800">
+        {products.map((item) => {
+          return (
+            <ProductCard
+              author={item.author}
+              productName={item.title.replace(/\s+/g, '')}
+              releaseDate={item.date_published}
+              description={item.guid}
+              link={item.url}
+            ></ProductCard>
+          )
+        })}
+        <div className="text-gray-500 flex justify-center items-center text-xl">no more</div>
+      </div>
+    </div>
   )
 }
