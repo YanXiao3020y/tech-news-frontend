@@ -1,5 +1,4 @@
 'use client'
-import styles from '../styles/CarouselArea.module.css'
 import { useState, useEffect, useCallback } from 'react'
 interface CarouselItem {
   title?: string
@@ -68,13 +67,14 @@ function CarouselArea() {
       {data.map((item, index) => {
         return (
           <i
-            className={`${index === activeIndex ? 'w-6 !bg-gray-300' : ''} w-4 h-3 border-2 border-white rounded-full bg-gray-400 absolute bottom-4 left-1/2 transform -translate-x-1/2 transition-all duration-300 ease-in-out`}
+            className={`${
+              index === activeIndex ? 'w-6 !bg-gray-300' : ''
+            } w-4 h-3 border-2 border-white rounded-full bg-gray-400 absolute bottom-4 left-1/2 transform -translate-x-1/2 transition-all duration-300 ease-in-out`}
             key={index}
             onClick={() => toggleTo(index)}
             style={{
               transform: `translateX(${
-                (index - (data.length / 2)) * 20 + 
-                (index > activeIndex ? 8 : 0)
+                (index - data.length / 2) * 20 + (index > activeIndex ? 8 : 0)
               }px)`
             }}
           ></i>

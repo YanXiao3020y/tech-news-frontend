@@ -1,5 +1,4 @@
 'use client'
-import styles from '../styles/NavBar.module.css'
 import React from 'react'
 import Image from 'next/image'
 import { Link } from 'next-view-transitions'

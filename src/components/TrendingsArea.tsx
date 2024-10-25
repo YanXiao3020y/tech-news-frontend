@@ -1,5 +1,4 @@
 'use client'
-import styles from '../styles/TrendingsArea.module.css'
 import { Link } from 'next-view-transitions'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -55,7 +54,7 @@ function TrendingsArea() {
     <div className="w-[700px] h-[580px] bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
       <div className="flex items-center w-full px-10 py-8">
         <h1 className="font-[Inder] text-3xl mr-3">Trendings</h1>
-        <FontAwesomeIcon icon={faArrowTrendUp} className={styles.icon} />
+        <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
       </div>
       <div className="w-3/4">
         <ol className="list-decimal">
