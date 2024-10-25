@@ -68,11 +68,9 @@ function TrendingsArea() {
           })}
         </ol>
       </div>
-      <div className="w-full pb-3 pt-4 rounded-b-lg hover:bg-gray-100 transition-colors duration-300 mt-auto flex flex-col items-center">
-        <Link href="/news">
+      <Link href="/news" className=" w-full pb-4 pt-4 rounded-b-lg hover:bg-gray-100 transition-colors duration-300 mt-auto flex flex-col items-center">
           <FontAwesomeIcon icon={faChevronDown} className="text-xl"></FontAwesomeIcon>
-        </Link>
-      </div>
+      </Link>
     </div>
   )
 }

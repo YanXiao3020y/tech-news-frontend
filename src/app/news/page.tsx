@@ -34,17 +34,6 @@ export default function NewsPage() {
   }
 
   useEffect(() => {
-    function checkBoxes() {
-      const triggerBottom = (window.innerHeight / 6) * 5
-      boxesRef.current.forEach((box) => {
-        const boxTop = box.getBoundingClientRect().top
-        if (boxTop > triggerBottom) {
-          box.classList.remove('show')
-        } else {
-          box.classList.add('show')
-        }
-      })
-    }
     async function loadNews() {
       try {
         setLoading(true)
@@ -56,16 +45,35 @@ export default function NewsPage() {
         setLoading(false)
       }
     }
-    const addAnimation = async () => {
-      await loadNews()
-      window.addEventListener('scroll', checkBoxes)
-      checkBoxes()
+    loadNews()
+  }, [])
+
+  useEffect(() => {
+    if (news.length === 0) {
+      return
     }
-    addAnimation()
+
+    function checkBoxes() {
+      console.log(boxesRef.current)
+      const triggerBottom = (window.innerHeight / 6) * 5 //
+      boxesRef.current.forEach((box) => {
+        const boxTop = box.getBoundingClientRect().top
+        console.log(boxTop, triggerBottom)
+        if (boxTop > triggerBottom) {
+          box.classList.remove('show')
+        } else {
+          box.classList.add('show')
+        }
+      })
+      console.log('Boxes checked.') //
+    }
+
+    window.addEventListener('scroll', checkBoxes)
+    checkBoxes()
     return () => {
       window.removeEventListener('scroll', checkBoxes)
     }
-  }, [])
+  }, [news])
 
   if (loading) {
     return (
