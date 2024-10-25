@@ -23,10 +23,12 @@ const fetchProducts = async () => {
 }
 export default function ProductsPage() {
   const [products, setProducts] = useState<Products[]>([])
+  const [text, setText] = useState<string>('loading...')
   useEffect(() => {
     async function loadProducts() {
       const data = await fetchProducts()
       setProducts(data)
+      setText('No more')
     }
     loadProducts()
   })
@@ -45,7 +47,9 @@ export default function ProductsPage() {
             ></ProductCard>
           )
         })}
-        <div className="text-gray-500 flex justify-center items-center text-xl">no more</div>
+        <div className="w-80 h-48 text-gray-500 flex justify-center items-center text-xl">
+          {text}
+        </div>
       </div>
     </div>
   )
