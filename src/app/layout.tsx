@@ -29,6 +29,10 @@ export default function RootLayout({
             href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inder&family=Inknut+Antiqua&display=swap"
             rel="stylesheet"
           ></link>
+          {/* <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+          /> */}
         </head>
         <body className="bg-gray-100 overflow-x-hidden">
           <NavBar />

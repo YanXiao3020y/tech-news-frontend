@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { div } from 'framer-motion/client'
 
 type DataType = {
   _id: string
@@ -25,7 +26,11 @@ const fetchData = async () => {
 
 function TrendingsArea() {
   const [data, setData] = useState<DataType[]>([])
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
+    const id = setInterval(() => {
+      loadTrendings()
+    }, 5000)
     const loadTrendings = async () => {
       let res = (await fetchData()) as Array<DataType>
       res.sort(
@@ -46,9 +51,13 @@ function TrendingsArea() {
           ':' +
           String(date.getMinutes()).padStart(2, '0')
       })
+      setLoading(false)
       setData(res)
+      clearInterval(id)
     }
-    loadTrendings()
+    return () => {
+      clearInterval(id)
+    }
   }, [])
   return (
     <div className="w-[700px] h-[580px] border bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
@@ -58,18 +67,38 @@ function TrendingsArea() {
       </div>
       <div className="w-3/4">
         <ol className="list-decimal">
-          {data.map((item, index) => {
-            return (
-              <li className="mb-5" key={index}>
-                <a href={item.link} className="no-underline hover:text-blue-600">{item.title}</a>
-                <p className="text-sm text-gray-500 text-right transform translate-x-10">{item.published}</p>
-              </li>
-            )
-          })}
+          {!loading &&
+            data.map((item, index) => {
+              return (
+                <li className="mb-5" key={index}>
+                  <a
+                    href={item.link}
+                    className="no-underline hover:text-blue-600"
+                  >
+                    {item.title}
+                  </a>
+                  <p className="text-sm text-gray-500 text-right transform translate-x-10">
+                    {item.published}
+                  </p>
+                </li>
+              )
+            })}
         </ol>
       </div>
-      <Link href="/news" className=" w-full pb-4 pt-4 rounded-b-lg hover:bg-gray-100 transition-colors duration-300 mt-auto flex flex-col items-center">
-          <FontAwesomeIcon icon={faChevronDown} className="text-xl"></FontAwesomeIcon>
+
+      {loading && (
+        <div className="w-full h-full flex justify-center items-center text-gray-500">
+          loading...
+        </div>
+      )}
+      <Link
+        href="/news"
+        className=" w-full pb-4 pt-4 rounded-b-lg hover:bg-gray-100 transition-colors duration-300 mt-auto flex flex-col items-center"
+      >
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className="text-xl"
+        ></FontAwesomeIcon>
       </Link>
     </div>
   )

@@ -34,6 +34,9 @@ export default function NewsPage() {
   }
 
   useEffect(() => {
+    const id = setInterval(() => {
+      loadNews()
+    }, 5000)
     async function loadNews() {
       try {
         setLoading(true)
@@ -43,9 +46,12 @@ export default function NewsPage() {
         setError((err as Error).message)
       } finally {
         setLoading(false)
+        clearInterval(id)
       }
     }
-    loadNews()
+    return () => {
+      clearInterval(id)
+    }
   }, [])
 
   useEffect(() => {
@@ -54,18 +60,15 @@ export default function NewsPage() {
     }
 
     function checkBoxes() {
-      console.log(boxesRef.current)
       const triggerBottom = (window.innerHeight / 6) * 5 //
       boxesRef.current.forEach((box) => {
         const boxTop = box.getBoundingClientRect().top
-        console.log(boxTop, triggerBottom)
         if (boxTop > triggerBottom) {
           box.classList.remove('show')
         } else {
           box.classList.add('show')
         }
       })
-      console.log('Boxes checked.') //
     }
 
     window.addEventListener('scroll', checkBoxes)

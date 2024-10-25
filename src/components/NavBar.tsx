@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function NavBar() {
-  const navList: Array<string> = ['CATEGORIES', 'ARCHIVES', 'SUBSCRIBE']
+  const navList: Array<string> = ['ARCHIVES', 'SUBSCRIBE', 'ABOUT']
   const [isActive, setIsActive] = useState(false)
   return (
     <div className="bg-gradient-to-b from-white to-gray-100 h-[75px] w-full min-h-[70px] flex justify-center items-center sticky top-0 z-10">
@@ -16,9 +16,9 @@ function NavBar() {
           <Image src="/favicon.ico" alt="icon" width="40" height="40" />
         </div>
       </Link>
-      <div className="no-select w-[600px] h-full flex justify-around">
+      <div className="relative no-select w-[600px] h-full flex justify-around">
         <div
-          className="font-inknut text-[1rem] h-full relative inline-block leading-[75px]"
+          className="cursor-pointer font-inknut text-[1rem] h-full relative inline-block leading-[75px]"
           onMouseOver={() => {
             setIsActive(true)
           }}

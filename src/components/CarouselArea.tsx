@@ -53,7 +53,7 @@ function CarouselArea() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       toggleTo((activeIndex + 1) % data.length)
-    }, 2000)
+    }, 5000)
     return () => clearTimeout(timeoutId)
   }, [activeIndex, data])
   return (

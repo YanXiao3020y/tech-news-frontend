@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import ToolCard from '@/components/ToolCard'
+import { motion } from 'framer-motion'
 type Tools = {
   _id: string
   title: string
@@ -18,39 +19,48 @@ async function fetchTools() {
 }
 export default function ToolsPage() {
   const [tools, setTools] = useState<Tools[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const id = setInterval(() => {
+      loadTools()
+    }, 5000)
     async function loadTools() {
       const data = await fetchTools()
+      setLoading(false)
       setTools(data)
+      clearInterval(id)
     }
-    loadTools()
-  })
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
+  if (loading) {
+    return (
+      <div className="flex text-gray-500 w-full h-full justify-center items-center">
+        loading...
+      </div>
+    )
+  }
   return (
     <div className="max-w-6xl mx-auto p-8 text-gray800">
       <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Tools</h1>
-      <div className="grid grid-cols-3 max-w-fit gap-6 mx-auto text-gray-800">
-        {tools.map((item) => (
-          <ToolCard
+      <div className="grid grid-cols-2 max-w-fit gap-8 mx-auto text-gray-800">
+        {/* <ToolCard
+            key={tools[0]._id}
+            title={tools[0].title}
+            summary={tools[0].summary}
+        ></ToolCard> */}
+        {tools.map((item, index) => (
+          <motion.div
             key={item._id}
-            title={item.title}
-            summary={item.summary}
-          ></ToolCard>
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.6, ease: 'easeOut' }}
+          >
+            <ToolCard title={item.title} summary={item.summary}></ToolCard>
+          </motion.div>
         ))}
-        {/* {products.map((item) => {
-          return (
-            <ProductCard
-              author={item.author}
-              productName={item.title.replace(/\s+/g, '')}
-              releaseDate={item.date_published}
-              description={item.guid}
-              link={item.url}
-            ></ProductCard>
-          )
-        })} */}
-        {/* <div className="w-80 h-48 text-gray-500 flex justify-center items-center text-xl">
-          {text}
-        </div> */}
       </div>
     </div>
   )
