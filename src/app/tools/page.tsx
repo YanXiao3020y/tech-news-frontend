@@ -1,58 +1,24 @@
 'use client'
 import { useEffect, useState } from 'react'
 import ToolCard from '@/components/ToolCard'
+import useLoadFunction from '@/components/LoadFunction'
+import withLoadingError from '@/components/withLoadingError'
+import Processing from '@/components/ProcessingCmp'
 import { motion } from 'framer-motion'
-type Tools = {
+type Tool = {
   _id: string
   title: string
   summary: string
 }
-async function fetchTools() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const res = await fetch(`${baseUrl}/tool`, {
-    cache: 'no-store'
-  })
-  if (!res.ok) {
-    throw new Error('Failed to fetch products.')
-  }
-  return res.json()
-}
-export default function ToolsPage() {
-  const [tools, setTools] = useState<Tools[]>([])
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      loadTools()
-    }, 5000)
-    async function loadTools() {
-      const data = await fetchTools()
-      setLoading(false)
-      setTools(data)
-      clearInterval(id)
-    }
-    loadTools()
-    return () => {
-      clearInterval(id)
-    }
-  }, [])
-  if (loading) {
-    return (
-      <div className="flex text-gray-500 w-full h-full justify-center items-center">
-        loading...
-      </div>
-    )
-  }
+function ToolsPage({data}: {
+  data: Tool[]
+}) {
   return (
     <div className="max-w-6xl mx-auto p-8 text-gray-800">
       <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Tools</h1>
       <div className="grid grid-cols-2 max-w-fit gap-8 mx-auto text-gray-800">
-        <ToolCard
-            key={tools[0]._id}
-            title={tools[0].title}
-            summary={tools[0].summary}
-        ></ToolCard>
-        {/* {tools.map((item, index) => (
+        {data?.map((item, index) => (
           <motion.div
             key={item._id}
             initial={{ opacity: 0, y: 50 }}
@@ -61,8 +27,12 @@ export default function ToolsPage() {
           >
             <ToolCard title={item.title} summary={item.summary}></ToolCard>
           </motion.div>
-        ))} */}
+        ))}
       </div>
     </div>
   )
 }
+
+export default withLoadingError<Tool[]>(ToolsPage, {
+  url: 'tool'
+})
