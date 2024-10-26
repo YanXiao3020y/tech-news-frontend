@@ -9,12 +9,34 @@ interface ToolCardProps {
   summary: string
   stars: number
   forks: number
+  language: string
 }
 
-const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks }) => {
+const languageColors: { [key: string]: string } = {
+  JavaScript: "#f7df1e",
+  TypeScript: "#007acc",
+  Python: "#3572A5",
+  Java: "#b07219",
+  "C#": "#178600",
+  "C++": "#00599C",
+  Starlark: "#76D275",
+  Ruby: "#701516",
+  Go: "#00ADD8",
+  PHP: "#4F5D95",
+  Swift: "#ffac45",
+  Rust: "#dea584",
+  Kotlin: "#A97BFF",
+  Default: "#333333"
+};
+
+const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks, language }) => {
+  const bgColor = languageColors[language] || languageColors.Default
   return (
     <div className="relative w-96 h-48 border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform duration-300 transform hover:scale-105">
       <div className="absolute inset-0 break-words bg-white p-8 transition-opacity duration-300 hover:bg-yellow-50">
+        <div className="inline-block absolute right-0 top-0 px-3 py-2 text-gray-800 font-[Inder] font-semibold text-sm rounded-lg transform translate-x-1.5 -translate-y-0.5" style={{
+          backgroundColor: `${bgColor}99`
+        }}>{language}</div>
         <p className="z-10 font-bold w-full text-xl break-words overflow-hidden text-nowrap overflow-ellipsis">
           <Link
             href={`https://github.com/${title.split('/')[0]}`}

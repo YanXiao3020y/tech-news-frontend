@@ -39,6 +39,7 @@ function ToolsPage({ data }: { data: Tool[] }) {
                 summary={item.summary}
                 stars={item.stars}
                 forks={item.forks}
+                language={item.language}
               ></ToolCard>
             </motion.div>
           ))}
