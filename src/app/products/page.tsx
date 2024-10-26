@@ -34,6 +34,7 @@ export default function ProductsPage() {
       setText('No more')
       clearInterval(id)
     }
+    loadProducts()
     return () => {
       clearInterval(id)
     }

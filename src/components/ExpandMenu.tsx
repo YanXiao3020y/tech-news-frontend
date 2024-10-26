@@ -10,7 +10,7 @@ function ExpandMenu({ status }: { status?: boolean }) {
       {items.map((item, index) => {
         return (
           <Link
-            className="font-thin flex justify-center items-center flex-grow transition-all leading-normal ease-in-out hover:bg-black/10"
+            className="font-thin flex justify-center items-center flex-grow transition-all leading-normal transition-200 hover:bg-black/10"
             key={index}
             href={`/${item}`}
           >

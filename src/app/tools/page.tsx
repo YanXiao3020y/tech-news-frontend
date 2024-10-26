@@ -31,6 +31,7 @@ export default function ToolsPage() {
       setTools(data)
       clearInterval(id)
     }
+    loadTools()
     return () => {
       clearInterval(id)
     }
@@ -43,15 +44,15 @@ export default function ToolsPage() {
     )
   }
   return (
-    <div className="max-w-6xl mx-auto p-8 text-gray800">
+    <div className="max-w-6xl mx-auto p-8 text-gray-800">
       <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Tools</h1>
       <div className="grid grid-cols-2 max-w-fit gap-8 mx-auto text-gray-800">
-        {/* <ToolCard
+        <ToolCard
             key={tools[0]._id}
             title={tools[0].title}
             summary={tools[0].summary}
-        ></ToolCard> */}
-        {tools.map((item, index) => (
+        ></ToolCard>
+        {/* {tools.map((item, index) => (
           <motion.div
             key={item._id}
             initial={{ opacity: 0, y: 50 }}
@@ -60,7 +61,7 @@ export default function ToolsPage() {
           >
             <ToolCard title={item.title} summary={item.summary}></ToolCard>
           </motion.div>
-        ))}
+        ))} */}
       </div>
     </div>
   )
