@@ -7,9 +7,11 @@ import { faStar, faCodeFork } from '@fortawesome/free-solid-svg-icons'
 interface ToolCardProps {
   title: string
   summary: string
+  stars: number
+  forks: number
 }
 
-const ToolCard: React.FC<ToolCardProps> = ({ title, summary }) => {
+const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks }) => {
   return (
     <div className="relative w-96 h-48 border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform duration-300 transform hover:scale-105">
       <div className="absolute inset-0 break-words bg-white p-8 transition-opacity duration-300 hover:bg-yellow-50">
@@ -31,13 +33,13 @@ const ToolCard: React.FC<ToolCardProps> = ({ title, summary }) => {
           </Link>
         </p>
         <p className="mt-2 flex gap-3">
-          <TagButton number={118945} color={'#FFD43B'}>
+          <TagButton number={stars} color={'#FFD43B'}>
             <FontAwesomeIcon
               icon={faStar}
               style={{ color: '#FFD43B', fontSize: "0.9rem" }}
             ></FontAwesomeIcon>
           </TagButton>
-          <TagButton number={22317} color={'#5da4da'}>
+          <TagButton number={forks} color={'#5da4da'}>
             <FontAwesomeIcon
               icon={faCodeFork}
               style={{ color: '#389ae5', fontSize: "0.9rem" }}

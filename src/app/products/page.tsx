@@ -18,7 +18,7 @@ function ProductsPage({ data }: { data: Product[] }) {
     <div className="max-w-6xl mx-auto p-8 text-gray800">
       <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Products</h1>
       <div className="grid grid-cols-2 lg:grid-cols-3 max-w-fit gap-6 mx-auto text-gray-800">
-        {data?.map((item, index) => (
+        {data.map((item, index) => (
           <motion.div
             key={item.guid}
             initial={{ opacity: 0, y: 50 }}

@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import ClientMotionWrapper from '@/components/ClientMotionWrapper'
 import withLoadingError from '@/components/withLoadingError'
@@ -48,7 +48,7 @@ function NewsPage({ data }: { data: New[] }) {
         <h1 className="text-4xl font-[Iceberg] font-bold mb-10">News</h1>
         <div className="max-w-3xl mx-auto text-gray-800">
           <ul>
-            {data?.map((item, index) => (
+            {data.map((item, index) => (
               <li
                 key={item._id}
                 className="bg-white border p-6 mb-6 rounded-lg shadow-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl"
