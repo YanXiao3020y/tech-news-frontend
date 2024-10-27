@@ -34,7 +34,7 @@ export default function RootLayout({
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
           /> */}
         </head>
-        <body className="bg-gray-100 overflow-x-hidden">
+        <body className="bg-gray-100 overflow-x-scroll no-scrollbar">
           <NavBar />
           {children}
           {/* <ClientMotionWrapper>{children}</ClientMotionWrapper> */}

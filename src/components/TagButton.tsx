@@ -22,7 +22,7 @@ const TagButton: React.FC<TagInfo> = ({ number, color, children }) => {
       }}
     >
       {children}
-      <span className="text-sm font-[inder] ml-1 text-gray-700">
+      <span className="mdlg:text-sm text-xs font-[inder] ml-1 text-gray-700">
         {number && (number / 1000).toFixed(2) + 'k'}
       </span>
     </div>

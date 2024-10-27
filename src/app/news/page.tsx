@@ -24,7 +24,7 @@ function NewsPage({ data }: { data: New[] }) {
     }
 
     function checkBoxes() {
-      const triggerBottom = (window.innerHeight / 6) * 5 //
+      const triggerBottom = (window.innerHeight / 7) * 6 //
       boxesRef.current.forEach((box) => {
         const boxTop = box.getBoundingClientRect().top
         if (boxTop > triggerBottom) {
@@ -45,7 +45,7 @@ function NewsPage({ data }: { data: New[] }) {
   return (
     <ClientMotionWrapper>
       <div className="mx-auto max-w-4xl p-8">
-        <h1 className="text-4xl font-[Iceberg] font-bold mb-10">News</h1>
+        <h1 className="sm:text-4xl text-3xl font-[Iceberg] font-bold mb-10">News</h1>
         <div className="max-w-3xl mx-auto text-gray-800">
           <ul>
             {data.map((item, index) => (
@@ -57,12 +57,12 @@ function NewsPage({ data }: { data: New[] }) {
                   transform: `translateX(${index % 2 === 0 ? '' : '-'}1500px)`
                 }}
               >
-                <span className="text-sm text-gray-500">
+                <span className="sm:text-sm text-xs text-gray-500">
                   {item.published.slice(0, -6)}
                 </span>
                 <Link
                   href={item.link}
-                  className="block text-2xl font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
+                  className="block md:text-2xl sm:text-xl text-lg font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
                 >
                   {item.title}
                 </Link>

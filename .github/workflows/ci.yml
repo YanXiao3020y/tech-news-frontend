@@ -15,60 +15,6 @@ jobs:
         with:
           fetch-depth: 0
           tags: true
-
-      # - name: Get the latest Git tag
-      #   id: get_tag
-      #   run: |
-      #     TAG=$(git describe --tags --abbrev=0 || echo "v0.0")
-      #     echo "Latest tag: $TAG"
-      #     echo "CURRENT_TAG=$TAG" >> $GITHUB_ENV
-
-      # - name: Calculate new tag with version bump
-      #   id: calc_new_tag
-      #   run: |
-      #     CURRENT_TAG=${{ env.CURRENT_TAG }}
-      #     VERSION=$(echo $CURRENT_TAG | sed 's/v//g')  
-      #     MAJOR=$(echo $VERSION | cut -d. -f1)  
-      #     MINOR=$(echo $VERSION | cut -d. -f2)  
-
-      #     if [ $MINOR -lt 9 ]; then
-      #       NEW_MINOR=$((MINOR+1))  
-      #       NEW_TAG="v$MAJOR.$NEW_MINOR"
-      #     else
-      #       NEW_MAJOR=$((MAJOR+1))  
-      #       NEW_MINOR=0  
-      #       NEW_TAG="v$NEW_MAJOR.$NEW_MINOR"
-      #     fi
-
-      #     echo "New tag: $NEW_TAG"
-      #     echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
-
-      # - name: Log in to DockerHub
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # - name: Build and tag Docker image
-      #   run: |
-      #     docker build --build-arg API_BASE_URL=${{ secrets.API_BASE_URL }} -t ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }} .
-      #     docker tag ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }} ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
-
-      # - name: Push Docker image
-      #   run: |
-      #     docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }}
-      #     docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
-
-      # - name: Set up Git credentials
-      #   run: |
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "github-actions[bot]@users.noreply.github.com"
-      #     git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
-      # - name: Create new Git tag
-      #   run: |
-      #     git tag ${{ env.NEW_TAG }}
-      #     git push origin ${{ env.NEW_TAG }}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -86,3 +32,58 @@ jobs:
         run: |
           docker build --build-arg API_BASE_URL=${{ secrets.API_BASE_URL }} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+
+      - name: Get the latest Git tag
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 || echo "v0.0")
+          echo "Latest tag: $TAG"
+          echo "CURRENT_TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Calculate new tag with version bump
+        id: calc_new_tag
+        run: |
+          CURRENT_TAG=${{ env.CURRENT_TAG }}
+          VERSION=$(echo $CURRENT_TAG | sed 's/v//g')  
+          MAJOR=$(echo $VERSION | cut -d. -f1)  
+          MINOR=$(echo $VERSION | cut -d. -f2)  
+
+          if [ $MINOR -lt 9 ]; then
+            NEW_MINOR=$((MINOR+1))  
+            NEW_TAG="v$MAJOR.$NEW_MINOR"
+          else
+            NEW_MAJOR=$((MAJOR+1))  
+            NEW_MINOR=0  
+            NEW_TAG="v$NEW_MAJOR.$NEW_MINOR"
+          fi
+
+          echo "New tag: $NEW_TAG"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and tag Docker image
+        run: |
+          docker build --build-arg API_BASE_URL=${{ secrets.API_BASE_URL }} -t ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }} .
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }} ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:${{ env.NEW_TAG }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/technews-frontend:latest
+
+      - name: Set up Git credentials
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Create new Git tag
+        run: |
+          git tag ${{ env.NEW_TAG }}
+          git push origin ${{ env.NEW_TAG }}

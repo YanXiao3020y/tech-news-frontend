@@ -17,9 +17,9 @@ function NavBar() {
           <Image src="/favicon.ico" alt="icon" width="40" height="40" />
         </div>
       </Link>
-      <div className="relative no-select w-[400px] h-full flex justify-around items-center">
+      <div className="relative no-select w-80 sm:w-[400px] h-full flex justify-around items-center">
         <div
-          className="cursor-pointer font-inknut text-[1rem] h-full relative inline-block leading-[75px]"
+          className="cursor-pointer font-inknut text-center text-[0.8rem] sm:text-[1rem] h-full relative inline-block leading-[75px]"
           onMouseOver={() => {
             setIsActive(true)
           }}
@@ -34,7 +34,7 @@ function NavBar() {
         {navList.map((item, index) => {
           return (
             <Link
-              className="font-inknut text-[1rem] h-full relative inline-block leading-[75px]"
+              className="font-inknut text-[0.8rem] sm:text-[1rem] h-full relative inline-block leading-[75px]"
               href={`/${item.toLowerCase()}`}
               key={index}
             >

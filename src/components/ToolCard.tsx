@@ -32,12 +32,12 @@ const languageColors: { [key: string]: string } = {
 const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks, language }) => {
   const bgColor = languageColors[language] || languageColors.Default
   return (
-    <div className="relative w-96 h-48 border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform duration-300 transform hover:scale-105">
-      <div className="absolute inset-0 break-words bg-white p-8 transition-opacity duration-300 hover:bg-yellow-50">
-        <div className="inline-block absolute right-0 top-0 px-3 py-2 text-gray-800 font-[Inder] font-semibold text-sm rounded-lg transform translate-x-1.5 -translate-y-0.5" style={{
+    <div className="relative mdlg:w-96 mdlg:h-48 sm:w-80 w-[400px] h-40  border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform duration-300 transform hover:scale-105">
+      <div className="absolute inset-0 break-words bg-white mdlg:p-8 sm:p-4 p-6 transition-opacity duration-300 hover:bg-yellow-50">
+        <div className="inline-block cursor-default absolute right-0 top-0 mdlg:px-3 mdlg:py-2 px-3 py-0.5 text-gray-800 font-[Inder] font-semibold mdlg:text-sm text-xs rounded-lg transform translate-x-1.5 mdlg:-translate-y-0.5" style={{
           backgroundColor: `${bgColor}99`
         }}>{language}</div>
-        <p className="z-10 font-bold w-full text-xl break-words overflow-hidden text-nowrap overflow-ellipsis">
+        <p className="z-10 font-bold w-full mdlg:text-xl text-base break-words overflow-hidden text-nowrap overflow-ellipsis">
           <Link
             href={`https://github.com/${title.split('/')[0]}`}
             target="_blank"
@@ -68,7 +68,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks, langu
             ></FontAwesomeIcon>
           </TagButton>
         </p>
-        <p className="no-scrollbar overflow-auto h-12 mt-2.5">{summary}</p>
+        <p className="no-scrollbar overflow-auto h-12 mt-2.5 mdlg:text-base text-sm">{summary}</p>
       </div>
 
       {/* <div className="absolute inset-0 break-words bg-yellow-50 p-8 transition-opacity duration-300 opacity-0 hover:opacity-100">
