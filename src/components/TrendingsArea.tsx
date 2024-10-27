@@ -33,9 +33,7 @@ const transformData = (res: DataType[]) => {
   return res
 }
 
-export default function TrendingsArea({data}: {
-  data: DataType[]
-}) {
+export default function TrendingsArea({ data }: { data: DataType[] }) {
   return (
     <div className="w-[700px] h-[520px] border bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
       <div className="flex items-center w-full px-10 py-8">
@@ -44,8 +42,8 @@ export default function TrendingsArea({data}: {
       </div>
       <div className="w-3/4">
         <ol className="list-decimal">
-          {
-            (transformData(data as DataType[]) as DataType[]).map((item, index) => {
+          {(transformData(data as DataType[]) as DataType[]).map(
+            (item, index) => {
               return (
                 <li className="mb-5" key={index}>
                   <a
@@ -61,7 +59,8 @@ export default function TrendingsArea({data}: {
                   </p>
                 </li>
               )
-            })}
+            }
+          )}
         </ol>
       </div>
       <Link
