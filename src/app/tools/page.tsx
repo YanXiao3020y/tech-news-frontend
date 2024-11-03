@@ -13,7 +13,7 @@ type Tool = {
 
 function ToolsPage({ data }: { data: Tool[] }) {
   return (
-    <div className="max-w-6xl mx-auto mdlg:p-8 p-6 text-gray-800">
+    <div className="max-w-5xl mx-auto mdlg:p-8 p-6 text-gray-800">
       <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Tools</h1>
       <div className="grid sm:min-w-[660px] max-w-fit grid-cols-1 sm:grid-cols-2 mdlg:gap-8 gap-4 mx-auto text-gray-800">
         {data
