@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 function NavBar() {
-  const navList: Array<string> = ['ARCHIVES', 'ABOUT']
+  const navList: Array<string> = ['NEWS', 'PRODUCTS', 'TOOLS']
   const [isActive, setIsActive] = useState(false)
   return (
     <div className="bg-gray-100 h-[75px] w-full min-h-[70px] flex justify-center items-center sticky top-0 z-10">
@@ -18,7 +18,7 @@ function NavBar() {
         </div>
       </Link>
       <div className="relative no-select w-80 sm:w-[400px] h-full flex justify-around items-center">
-        <div
+        {/* <div
           className="cursor-pointer font-inknut text-center text-[0.8rem] sm:text-[1rem] h-full relative inline-block leading-[75px]"
           onMouseOver={() => {
             setIsActive(true)
@@ -30,7 +30,7 @@ function NavBar() {
           NEWS
           <FontAwesomeIcon className="h-5 w-5 ml-2.5" icon={faChevronDown} />
           <ExpandMenu status={isActive} />
-        </div>
+        </div> */}
         {navList.map((item, index) => {
           return (
             <Link
@@ -44,9 +44,11 @@ function NavBar() {
         })}
       </div>
       <div className="absolute right-4">
-        <TagButton color="#3389FF">
-          <span className="font-inknut text-xs">SUBSCRIBE</span>
-        </TagButton>
+        <Link href="/about">
+          <TagButton color="#3389FF">
+            <span className="font-inknut text-xs">ABOUT</span>
+          </TagButton>
+        </Link>
       </div>
     </div>
   )
