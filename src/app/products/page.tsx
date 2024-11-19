@@ -60,6 +60,5 @@ function ProductsPage({ data }: { data: Product[] }) {
 }
 
 export default withLoadingError<Product[]>(ProductsPage, {
-    url: 'products'
-  })
-
+  url: 'products'
+})

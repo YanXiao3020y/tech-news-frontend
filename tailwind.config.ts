@@ -12,7 +12,8 @@ const config: Config = {
         foreground: 'var(--foreground)'
       },
       fontFamily: {
-        inknut: ['"Inknut Antiqua"', 'serif'] // 添加 Inknut Antiqua 字体
+        inknut: ['"Inknut Antiqua"', 'serif'],
+        sour: ['"Sour Gummy"']
       }
     },
     plugins: [],

@@ -1,8 +1,8 @@
 'use client'
 import { useRef, useEffect } from 'react'
-import Link from 'next/link'
 import ClientMotionWrapper from '@/components/ClientMotionWrapper'
 import withLoadingError from '@/components/withLoadingError'
+import NewCard from '@/components/NewCard'
 import React from 'react'
 
 type New = {
@@ -10,7 +10,27 @@ type New = {
   link: string
   published: string
   title: string
+  icon_url: string
 }
+
+function formatData(res: New[]) {
+  res.forEach((item) => {
+    const date = new Date(item.published)
+    item.published =
+      date.getFullYear() +
+      '-' +
+      String(date.getMonth() + 1).padStart(2, '0') +
+      '-' +
+      String(date.getDate()).padStart(2, '0') +
+      ' ' +
+      String(date.getHours()).padStart(2, '0') +
+      ':' +
+      String(date.getMinutes()).padStart(2, '0')
+  })
+  console.log(res)
+  return res
+}
+
 function NewsPage({ data }: { data: New[] }) {
   const boxesRef = useRef<HTMLLIElement[]>([])
   const addToRefs = (el: HTMLLIElement) => {
@@ -45,29 +65,22 @@ function NewsPage({ data }: { data: New[] }) {
   return (
     <ClientMotionWrapper>
       <div className="mx-auto max-w-4xl p-8">
-        <h1 className="sm:text-4xl text-3xl font-[Iceberg] font-bold mb-10">News</h1>
+        <h1 className="sm:text-4xl text-3xl font-[Iceberg] font-bold mb-10">
+          News
+        </h1>
         <div className="max-w-3xl mx-auto text-gray-800">
           <ul>
-            {data.map((item, index) => (
-              <li
+            {formatData(data).map((item, index) => (
+              <NewCard
                 key={item._id}
-                className="bg-white border p-6 mb-6 rounded-lg shadow-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl"
+                index={index}
+                published={item.published}
+                link={item.link}
+                title={item.title}
+                icon={item.icon_url}
                 ref={addToRefs}
-                style={{
-                  transform: `translateX(${index % 2 === 0 ? '' : '-'}1500px)`
-                }}
               >
-                <span className="sm:text-sm text-xs text-gray-500">
-                  {item.published.slice(0, -6)}
-                </span>
-                <Link
-                  href={item.link}
-                  className="block md:text-2xl sm:text-xl text-lg font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
-                >
-                  {item.title}
-                </Link>
-                <p className="text-gray-600 mt-4"></p>
-              </li>
+              </NewCard>
             ))}
           </ul>
         </div>

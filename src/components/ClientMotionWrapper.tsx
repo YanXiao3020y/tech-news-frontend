@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 export default function ClientMotionWrapper({
-  children
+  children,
 }: {
   children: React.ReactNode
 }) {
