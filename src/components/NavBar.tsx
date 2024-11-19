@@ -13,7 +13,7 @@ function NavBar() {
     <div className="bg-gray-100 h-[75px] w-full min-h-[70px] flex justify-center items-center sticky top-0 z-10">
       <Link href="/">
         <div className="no-select absolute top-0 left-6 w-10 h-[75px] flex items-center justify-center">
-          <Image src="/favicon.png" alt="icon" width="30" height="30" />
+          <Image src="/favicon.png" alt="icon" width="30" height="30" className="w-auto h-auto" />
         </div>
       </Link>
       <div className="relative no-select w-80 sm:w-[400px] h-full flex justify-around items-center">

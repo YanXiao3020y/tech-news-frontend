@@ -27,7 +27,6 @@ function formatData(res: New[]) {
       ':' +
       String(date.getMinutes()).padStart(2, '0')
   })
-  console.log(res)
   return res
 }
 

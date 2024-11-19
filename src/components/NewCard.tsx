@@ -24,9 +24,8 @@ const NewCard: React.FC<NewProps & React.RefAttributes<HTMLLIElement>> =
         </span>
         <img
           src={icon}
-          alt="icon"
-          width="30"
-          height="30"
+          width="20"
+          height="20"
           className="inline-block absolute right-6"
           onError={(e) => {
             ;(e.target as HTMLImageElement).src = '/placeholder.png'
@@ -34,7 +33,7 @@ const NewCard: React.FC<NewProps & React.RefAttributes<HTMLLIElement>> =
         />
         <Link
           href={link}
-          className="block font-sour md:text-2xl sm:text-xl text-lg font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
+          className="block font-funnel md:text-2xl sm:text-xl text-lg font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
         >
           {title}
         </Link>

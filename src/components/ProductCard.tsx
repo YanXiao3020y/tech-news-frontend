@@ -24,10 +24,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="absolute inset-0 p-6 bg-white transition-opacity duration-300 ease-in-out hover:opacity-0">
         <img
           src={icon}
-          alt="icon"
           width="30"
           height="30"
-          className="transition-all duration-300 transform group-hover:-translate-y-10 group-hover:opacity-0"
+          className="transition-all rounded-md duration-300 transform group-hover:-translate-y-10 group-hover:opacity-0"
           onError={(e) => {
             ;(e.target as HTMLImageElement).src = '/placeholder.png'
           }}
@@ -38,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="transition-all duration-300 transform group-hover:-translate-y-10 absolute top-24 left-6 text-xs font-funnel text-gray-500">
           Release: {releaseDate}
         </p>
-        <p className="transition-all duration-300 transform group-hover:-translate-y-16 absolute top-32 text-base font-funnel text-gray-800">
+        <p className="transition-all duration-300 transform group-hover:-translate-y-16 absolute top-[120px] text-base font-funnel text-gray-800">
           {tag}
         </p>
       </div>
