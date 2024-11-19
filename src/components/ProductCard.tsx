@@ -4,8 +4,10 @@ interface ProductCardProps {
   author: string
   productName: string
   releaseDate: string
-  description: string // Hover 时显示的详细信息
-  link: string // 跳转链接
+  description: string
+  link: string
+  icon: string
+  tag: string
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -13,34 +15,51 @@ const ProductCard: React.FC<ProductCardProps> = ({
   productName,
   releaseDate,
   description,
-  link = '#'
+  link = '#',
+  icon,
+  tag
 }) => {
   return (
-    <div className="relative w-[384px] h-36 md:w-80 md:h-48 sm:w-80 sm:h-44 border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform transform hover:scale-105">
-      <div className="absolute inset-0 md:p-8 p-6 bg-white transition-opacity duration-300 ease-in-out hover:opacity-0">
-        <h2 className="md:text-2xl text-xl font-semibold mb-5 text-nowrap overflow-ellipsis overflow-hidden">
+    <div className="group relative w-[384px] h-36 md:w-80 md:h-48 sm:w-80 sm:h-44 border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform transform hover:scale-105">
+      <div className="absolute inset-0 p-6 bg-white transition-opacity duration-300 ease-in-out hover:opacity-0">
+        <img
+          src={icon}
+          alt="icon"
+          width="30"
+          height="30"
+          className="transition-all duration-300 transform group-hover:-translate-y-10 group-hover:opacity-0"
+          onError={(e) => {
+            ;(e.target as HTMLImageElement).src = '/placeholder.png'
+          }}
+        />
+        <h2 className="absolute max-w-[80%] left-6 top-16 transition-all duration-300 transform group-hover:-translate-y-10 font-sour md:text-2xl text-xl font-semibold mb-8 text-nowrap overflow-ellipsis overflow-hidden">
           {productName}
         </h2>
-        <p className="text-sm text-gray-500">Author: {author}</p>
-        <p className="text-sm text-gray-500">Release: {releaseDate}</p>
+        <p className="transition-all duration-300 transform group-hover:-translate-y-10 absolute top-24 left-6 text-xs font-funnel text-gray-500">
+          Release: {releaseDate}
+        </p>
+        <p className="transition-all duration-300 transform group-hover:-translate-y-16 absolute top-32 text-base font-funnel text-gray-800">
+          {tag}
+        </p>
       </div>
 
-      <div className="absolute inset-0 md:p-8 p-6 pb-1 bg-blue-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
-        <h2 className="md:text-2xl text-xl font-semibold mb-5 text-nowrap overflow-ellipsis overflow-hidden">
+      <div className="absolute inset-0 p-6 bg-blue-50 opacity-0 hover:opacity-100 overflow-auto transition-opacity duration-300">
+        <h2 className="absolute max-w-[80%] left-6 top-16 transition-all duration-300 transform group-hover:-translate-y-10 font-sour md:text-2xl text-xl font-semibold mb-8 text-nowrap overflow-ellipsis overflow-hidden">
           {productName}
         </h2>
-        {description.split(',').map((item) => {
-          return (
-            <p className="text-sm text-wrap break-words leading-relaxed">{item}</p>
-          )
-        })}
-        <a
-          href={link}
-          className="absolute right-8 sm:right-0 block text-center sm:relative sm:-bottom-2 h-max px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-          target="_blank"
-        >
-          Read More
-        </a>
+        <p className="transition-all duration-300 transform group-hover:-translate-y-10 absolute top-24 text-xs font-funnel text-gray-500">
+          Author: {author}
+        </p>
+        <p className="relative transition-all duration-300 transform group-hover:-translate-y-16 mt-[124px] text-base font-funnel text-gray-800">
+          {description}
+          <a
+            href={link}
+            className="inline-block absolute -bottom-16 left-0 font-funnel text-center px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            target="_blank"
+          >
+            Read More
+          </a>
+        </p>
       </div>
     </div>
   )

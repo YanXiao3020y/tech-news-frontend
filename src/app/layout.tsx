@@ -29,7 +29,7 @@ export default function RootLayout({
             href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inder&family=Inknut+Antiqua&display=swap"
             rel="stylesheet"
           ></link>
-          <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Sour+Gummy&display=swap" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Sour+Gummy&family=Funnel+Display&display=swap" rel="stylesheet"></link>
 
           {/* <link
             rel="stylesheet"

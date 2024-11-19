@@ -19,17 +19,18 @@ const NewCard: React.FC<NewProps & React.RefAttributes<HTMLLIElement>> =
           transform: `translateX(${index % 2 === 0 ? '' : '-'}1500px)`
         }}
       >
-        <span className="font-sour sm:text-sm text-xs text-gray-500">{published}</span>
+        <span className="font-funnel sm:text-sm text-xs text-gray-500">
+          {published}
+        </span>
         <img
           src={icon}
           alt="icon"
-          width="20px"
-          height="20px"
+          width="30"
+          height="30"
           className="inline-block absolute right-6"
-
-      onError={(e) => {
-        (e.target as HTMLImageElement).src='/placeholder.png'
-      }}
+          onError={(e) => {
+            ;(e.target as HTMLImageElement).src = '/placeholder.png'
+          }}
         />
         <Link
           href={link}

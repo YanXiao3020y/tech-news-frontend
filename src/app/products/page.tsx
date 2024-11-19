@@ -11,6 +11,9 @@ type Product = {
   guid: string
   title: string
   url: string
+  icon_url: string
+  tag_line: string
+  description: Array<string>
 }
 
 const transformData = (res: Product[]) => {
@@ -46,8 +49,10 @@ function ProductsPage({ data }: { data: Product[] }) {
               author={item.author}
               productName={item.title.replace(/\s+/g, '')}
               releaseDate={item.date_published}
-              description={item.guid}
+              description={item.description[0]}
               link={item.url}
+              icon={item.icon_url}
+              tag={item.tag_line}
             ></ProductCard>
           </motion.div>
         ))}

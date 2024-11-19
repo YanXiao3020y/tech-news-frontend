@@ -13,7 +13,8 @@ const config: Config = {
       },
       fontFamily: {
         inknut: ['"Inknut Antiqua"', 'serif'],
-        sour: ['"Sour Gummy"']
+        sour: ['"Sour Gummy"', 'serif'],
+        funnel: ['"Funnel Display"', 'serif']
       }
     },
     plugins: [],
