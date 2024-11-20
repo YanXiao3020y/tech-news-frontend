@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useEffect } from 'react'
-import ClientMotionWrapper from '@/components/ClientMotionWrapper'
+// import ClientMotionWrapper from '@/components/ClientMotionWrapper'
 import withLoadingError from '@/components/withLoadingError'
 import NewCard from '@/components/NewCard'
 import React from 'react'
@@ -17,6 +17,7 @@ function formatData(res: New[]) {
   const validExtensions = ['svg', 'png', 'jpg', 'jpeg', 'ico', 'webp', 'gif']
   const regex = new RegExp(`^https://.+\\.(${validExtensions.join('|')})$`, 'i');
   res.forEach((item) => {
+    if (!item.published || !item.icon_url) return;
     const date = new Date(item.published)
     item.published =
       date.getFullYear() +
@@ -67,7 +68,6 @@ function NewsPage({ data }: { data: New[] }) {
   }, [data])
 
   return (
-    <ClientMotionWrapper>
       <div className="mx-auto max-w-4xl p-8">
         <h1 className="sm:text-4xl text-3xl font-[Iceberg] font-bold mb-10">
           News
@@ -89,7 +89,6 @@ function NewsPage({ data }: { data: New[] }) {
           </ul>
         </div>
       </div>
-    </ClientMotionWrapper>
   )
 }
 

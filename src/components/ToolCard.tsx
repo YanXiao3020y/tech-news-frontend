@@ -13,30 +13,41 @@ interface ToolCardProps {
 }
 
 const languageColors: { [key: string]: string } = {
-  JavaScript: "#f7df1e",
-  TypeScript: "#007acc",
-  Python: "#3572A5",
-  Java: "#b07219",
-  "C#": "#178600",
-  "C++": "#00599C",
-  Starlark: "#76D275",
-  Ruby: "#701516",
-  Go: "#00ADD8",
-  PHP: "#4F5D95",
-  Swift: "#ffac45",
-  Rust: "#dea584",
-  Kotlin: "#A97BFF",
-  Default: "#333333"
-};
+  JavaScript: '#f7df1e',
+  TypeScript: '#007acc',
+  Python: '#3572A5',
+  Java: '#b07219',
+  'C#': '#178600',
+  'C++': '#00599C',
+  Starlark: '#76D275',
+  Ruby: '#701516',
+  Go: '#00ADD8',
+  PHP: '#4F5D95',
+  Swift: '#ffac45',
+  Rust: '#dea584',
+  Kotlin: '#A97BFF',
+  Default: '#333333'
+}
 
-const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks, language }) => {
+const ToolCard: React.FC<ToolCardProps> = ({
+  title,
+  summary,
+  stars,
+  forks,
+  language
+}) => {
   const bgColor = languageColors[language] || languageColors.Default
   return (
     <div className="relative mdlg:w-96 mdlg:h-48 sm:w-80 w-[400px] h-40  border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform duration-300 transform hover:scale-105">
       <div className="absolute inset-0 break-words bg-white mdlg:p-8 sm:p-4 p-6 transition-opacity duration-300 hover:bg-yellow-50">
-        <div className="inline-block cursor-default absolute right-0 top-0 mdlg:px-3 mdlg:py-2 px-3 py-0.5 text-gray-800 font-[Inder] font-semibold mdlg:text-sm text-xs rounded-lg transform translate-x-1.5 mdlg:-translate-y-0.5" style={{
-          backgroundColor: `${bgColor}99`
-        }}>{language}</div>
+        <div
+          className="inline-block cursor-default absolute right-0 top-0 mdlg:px-3 mdlg:py-2 px-3 py-0.5 text-gray-800 font-[Inder] font-semibold mdlg:text-sm text-xs rounded-lg transform translate-x-1.5 mdlg:-translate-y-0.5"
+          style={{
+            backgroundColor: `${bgColor}99`
+          }}
+        >
+          {language}
+        </div>
         <p className="z-10 font-bold w-full mdlg:text-xl text-base break-words overflow-hidden text-nowrap overflow-ellipsis">
           <Link
             href={`https://github.com/${title.split('/')[0]}`}
@@ -54,21 +65,23 @@ const ToolCard: React.FC<ToolCardProps> = ({ title, summary, stars, forks, langu
             {title.split('/')[1]}
           </Link>
         </p>
-        <p className="mt-2 flex gap-3">
+        <div className="mt-2 flex gap-3">
           <TagButton number={stars} color={'#FFD43B'}>
             <FontAwesomeIcon
               icon={faStar}
-              style={{ color: '#FFD43B', fontSize: "0.9rem" }}
+              style={{ color: '#FFD43B', fontSize: '0.9rem' }}
             ></FontAwesomeIcon>
           </TagButton>
           <TagButton number={forks} color={'#5da4da'}>
             <FontAwesomeIcon
               icon={faCodeFork}
-              style={{ color: '#389ae5', fontSize: "0.9rem" }}
+              style={{ color: '#389ae5', fontSize: '0.9rem' }}
             ></FontAwesomeIcon>
           </TagButton>
+        </div>
+        <p className="no-scrollbar overflow-auto h-12 mt-2.5 mdlg:text-base text-sm">
+          {summary}
         </p>
-        <p className="no-scrollbar overflow-auto h-12 mt-2.5 mdlg:text-base text-sm">{summary}</p>
       </div>
 
       {/* <div className="absolute inset-0 break-words bg-yellow-50 p-8 transition-opacity duration-300 opacity-0 hover:opacity-100">

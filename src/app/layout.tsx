@@ -2,7 +2,6 @@ import './globals.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import NavBar from '@/components/NavBar'
-import { ViewTransitions } from 'next-view-transitions'
 // import dynamic from 'next/dynamic'
 
 // const ClientMotionWrapper = dynamic(
@@ -22,7 +21,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ViewTransitions>
       <html lang="en">
         <head>
           <link
@@ -42,6 +40,5 @@ export default function RootLayout({
           {/* <ClientMotionWrapper>{children}</ClientMotionWrapper> */}
         </body>
       </html>
-    </ViewTransitions>
   )
 }

@@ -9,7 +9,7 @@ interface WithLoadingErrorOptions {
 }
 
 function withLoadingError<T>(
-  WrappedComponent: React.FC<{data: T}>,
+  WrappedComponent: React.FC<{ data: T }>,
   options: WithLoadingErrorOptions
 ) {
   const EnhancedComponent: React.FC = () => {
@@ -19,9 +19,10 @@ function withLoadingError<T>(
       return <Processing />
     }
     if (error) {
-      return (
-        <ErrorPage error={error}></ErrorPage>
-      )
+      return <ErrorPage error={error}></ErrorPage>
+    }
+    if (!data) {
+      return <ErrorPage error="No data available" />
     }
     // 确保 data 不为 null
     return <WrappedComponent data={data as T} />
