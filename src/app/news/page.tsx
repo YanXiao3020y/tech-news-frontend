@@ -14,6 +14,8 @@ type New = {
 }
 
 function formatData(res: New[]) {
+  const validExtensions = ['svg', 'png', 'jpg', 'jpeg', 'ico', 'webp', 'gif']
+  const regex = new RegExp(`^https://.+\\.(${validExtensions.join('|')})$`, 'i');
   res.forEach((item) => {
     const date = new Date(item.published)
     item.published =
@@ -26,6 +28,9 @@ function formatData(res: New[]) {
       String(date.getHours()).padStart(2, '0') +
       ':' +
       String(date.getMinutes()).padStart(2, '0')
+    if (!regex.test(item.icon_url)) {
+      item.icon_url = '/placeholder.png'
+    }
   })
   return res
 }
