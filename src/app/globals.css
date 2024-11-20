@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto';
 }
 body {
   height: 100vh;
@@ -13,5 +14,5 @@ body {
   transform: none !important;
 }
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* 隐藏 Chrome, Safari 和 Edge 中的滚动条 */
+  display: none;
 }

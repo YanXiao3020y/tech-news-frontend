@@ -24,7 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inder&family=Inknut+Antiqua&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inder&family=Inknut+Antiqua&family=Roboto&display=swap"
             rel="stylesheet"
           ></link>
           <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Sour+Gummy&family=Funnel+Display&display=swap" rel="stylesheet"></link>
@@ -34,7 +34,7 @@ export default function RootLayout({
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
           /> */}
         </head>
-        <body className="bg-gray-100 overflow-x-scroll no-scrollbar">
+        <body className="bg-gray-100 !overflow-hidden no-scrollbar">
           <NavBar />
           {children}
           {/* <ClientMotionWrapper>{children}</ClientMotionWrapper> */}

@@ -35,9 +35,9 @@ const transformData = (res: Product[]) => {
 
 function ProductsPage({ data }: { data: Product[] }) {
   return (
-    <div className="max-w-6xl sm:min-w-[725px] mx-auto md:p-8 p-4">
-      <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-fit gap-6 mx-auto text-gray-800">
+    <div className="md:max-w-6xl mx-auto p-8">
+      <h1 className="text-3xl md:text-4xl font-[Iceberg] font-bold mb-10">Products</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-fit gap-3 md:gap-6 mx-auto text-gray-800">
         {transformData(data).map((item, index) => (
           <motion.div
             key={item.guid}
