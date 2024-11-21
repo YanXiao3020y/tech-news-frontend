@@ -1,6 +1,5 @@
 'use client'
 import { useRef, useEffect } from 'react'
-// import ClientMotionWrapper from '@/components/ClientMotionWrapper'
 import withLoadingError from '@/components/withLoadingError'
 import NewCard from '@/components/NewCard'
 import React from 'react'

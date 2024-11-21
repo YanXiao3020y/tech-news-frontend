@@ -52,7 +52,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
           <Link
             href={`https://github.com/${title.split('/')[0]}`}
             target="_blank"
-            className="hover:text-blue-500 transition-colors duration-200"
+            className="font-sour hover:text-blue-500 transition-colors duration-200"
           >
             {title.split('/')[0]}
           </Link>
@@ -60,7 +60,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
           <Link
             href={`https://github.com/${title}`}
             target="_blank"
-            className="hover:text-blue-500 transition-colors duration-200"
+            className="font-sour hover:text-blue-500 transition-colors duration-200"
           >
             {title.split('/')[1]}
           </Link>
@@ -79,7 +79,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
             ></FontAwesomeIcon>
           </TagButton>
         </div>
-        <p className="no-scrollbar overflow-auto h-12 mt-2.5 mdlg:text-base text-sm">
+        <p className="no-scrollbar font-funnel overflow-auto h-12 mt-3 mdlg:text-base text-sm">
           {summary}
         </p>
       </div>

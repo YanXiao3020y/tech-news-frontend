@@ -12,7 +12,7 @@ const TagButton: React.FC<TagInfo> = ({ number, color, children }) => {
   const [bg, setBg] = useState(`${color}33`)
   return (
     <div
-      className="h-fit w-fit flex justify-center items-center px-2.5 py-1.5 rounded-full cursor-pointer transition-colors duration-200"
+      className="h-fit w-fit flex justify-center items-center px-3 py-1.5 rounded-full cursor-pointer transition-colors duration-200"
       style={{ backgroundColor: bg }}
       onMouseOver={() => {
         setBg(`${color}66`)
@@ -22,7 +22,7 @@ const TagButton: React.FC<TagInfo> = ({ number, color, children }) => {
       }}
     >
       {children}
-      <span className="mdlg:text-sm text-xs font-[inder] ml-1 text-gray-700">
+      <span className="mdlg:text-sm text-xs font-funnel ml-1 text-gray-700">
         {number && (number / 1000).toFixed(2) + 'k'}
       </span>
     </div>
