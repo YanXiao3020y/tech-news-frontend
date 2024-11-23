@@ -10,7 +10,7 @@ type DataType = {
 }
 function HomePage({ data }: { data: DataType[] }) {
   return (
-    <div className="flex flex-col h-[max(90vh,921px)] items-center">
+    <div className="relative overflow-hidden flex flex-col h-[calc(100vh-75px)] items-center">
       <CarouselArea />
       <TrendingsArea data={data} />
     </div>

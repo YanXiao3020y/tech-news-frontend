@@ -57,11 +57,11 @@ function CarouselArea() {
     return () => clearTimeout(timeoutId)
   }, [activeIndex, data])
   return (
-    <div className="w-[700px] h-[340px] bg-white rounded-lg flex flex-col items-start px-[60px] py-[50px] relative overflow-hidden mt-4 mb-6 shadow-lg shadow-gray-200 z-[1]">
-      <div className="w-7/8 font-[Inder] text-3xl mb-8">
+    <div className="w-[700px] h-[300px] bg-white rounded-lg flex flex-col items-start px-[60px] py-[50px] relative overflow-hidden mt-4 mb-6 shadow-lg shadow-gray-200 z-[1]">
+      <div className="w-7/8 font-sour text-3xl mb-8">
         <span>{title}</span>
       </div>
-      <div className="w-4/5 font-[Inder] text-base overflow-auto">
+      <div className="w-4/5 font-funnel text-base overflow-auto">
         <span>{content}</span>
       </div>
       {data.map((item, index) => {

@@ -72,8 +72,8 @@ function NavBar() {
       </div>
 
       <div
-        className={`z-10 h-screen w-full bg-gray-50 absolute top-0 left-0 transition-all duration-500 transform ${
-          togglNav ? "-tranlate-x-full opacity-80" : "translate-x-full opacity-0"
+        className={`z-10 h-screen w-full bg-gray-50 opacity-80 absolute top-0 left-0 transition-all duration-500 transform ${
+          togglNav ? "-tranlate-x-full block" : "translate-x-full hidden"
         }`}
       >
      </div>

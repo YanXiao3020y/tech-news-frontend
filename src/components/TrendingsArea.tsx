@@ -35,28 +35,28 @@ const transformData = (res: DataType[]) => {
 
 export default function TrendingsArea({ data }: { data: DataType[] }) {
   return (
-    <div className="w-[700px] h-[520px] border bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
+    <div className="w-[700px] h-[380x] border bg-white shadow-lg shadow-gray-200 rounded-lg flex flex-col items-center">
       <div className="flex items-center w-full px-10 py-8">
-        <h1 className="font-[Inder] text-3xl mr-3">Trendings</h1>
+        <h1 className="font-sour text-3xl mr-3">Trendings</h1>
         <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
       </div>
-      <div className="w-3/4">
+      <div className="w-3/4 font-funnel">
         <ol className="list-decimal">
           {(transformData(data as DataType[]) as DataType[]).map(
             (item, index) => {
               return (
                 <li className="mb-5" key={index}>
-                  <a
-                    href={item.link}
-                    className="no-underline transition-colors duration-200 hover:text-blue-600"
-                  >
-                    <p className="break-words overflow-x-hidden text-ellipsis text-nowrap mb-2">
+                  <p className="break-words overflow-x-hidden text-ellipsis text-nowrap">
+                    <a
+                      href={item.link}
+                      className="no-underline transition-colors duration-200 hover:text-blue-600"
+                    >
                       {item.title}
-                    </p>
-                  </a>
-                  <p className="text-sm text-gray-500 text-right transform translate-x-10">
-                    {item.published}
+                    </a>
                   </p>
+                  {/* <span className="text-sm text-gray-500">
+                    <b>{item.published}</b>
+                  </span> */}
                 </li>
               )
             }

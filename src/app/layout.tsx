@@ -23,7 +23,7 @@ export default function RootLayout({
           ></link>
           <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Sour+Gummy&family=Funnel+Display&display=swap" rel="stylesheet"></link>
         </head>
-        <body className="bg-gray-100 overflow-x-hidden no-scrollbar">
+        <body className="bg-gray-100 !overflow-x-hidden no-scrollbar">
           <NavBar />
           {children}
         </body>
