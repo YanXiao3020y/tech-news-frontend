@@ -16,7 +16,6 @@ function formatData(res: New[]) {
   const validExtensions = ['svg', 'png', 'jpg', 'jpeg', 'ico', 'webp', 'gif']
   const regex = new RegExp(`^https://.+\\.(${validExtensions.join('|')})$`, 'i');
   res.forEach((item) => {
-    if (!item.published || !item.icon_url) return;
     const date = new Date(item.published)
     item.published =
       date.getFullYear() +
@@ -32,6 +31,7 @@ function formatData(res: New[]) {
       item.icon_url = '/placeholder.png'
     }
   })
+  console.log(res)
   return res
 }
 
@@ -67,8 +67,8 @@ function NewsPage({ data }: { data: New[] }) {
   }, [data])
 
   return (
-      <div className="mx-auto max-w-4xl p-8">
-        <h1 className="sm:text-4xl text-3xl font-[Iceberg] font-bold mb-10">
+      <div className="mx-auto max-w-4xl px-8 sm:p-8 overflow-x-hidden">
+        <h1 className="sm:text-4xl text-3xl font-[Iceberg] font-bold sm:mb-10 mb-8">
           News
         </h1>
         <div className="max-w-3xl mx-auto text-gray-800">

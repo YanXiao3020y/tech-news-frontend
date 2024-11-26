@@ -49,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="transition-all duration-300 transform group-hover:-translate-y-10 absolute top-24 text-xs font-funnel text-gray-500">
           Author: {author}
         </p>
-        <p className="relative transition-all duration-300 transform group-hover:-translate-y-16 mt-[124px] text-base font-funnel text-gray-800">
+        <p className="relative transition-all duration-300 transform group-hover:-translate-y-16 mt-[120px] text-base font-funnel text-gray-800">
           {description}
           <a
             href={link}

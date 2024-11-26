@@ -45,7 +45,7 @@ export default function TrendingsArea({ data }: { data: DataType[] }) {
           {(transformData(data as DataType[]) as DataType[]).map(
             (item, index) => {
               return (
-                <li className="mb-5" key={index}>
+                <li className="mb-6" key={index}>
                   <p className="break-words overflow-x-hidden text-ellipsis text-nowrap">
                     <a
                       href={item.link}
