@@ -13,9 +13,9 @@ type Tool = {
 
 function ToolsPage({ data }: { data: Tool[] }) {
   return (
-    <div className="mx-auto max-w-5xl p-6 text-gray-800 mdlg:p-8">
-      <h1 className="mb-10 font-[Iceberg] text-4xl font-bold">Tools</h1>
-      <div className="mx-auto grid max-w-fit grid-cols-1 gap-4 text-gray-800 sm:min-w-[660px] sm:grid-cols-2 mdlg:gap-8">
+    <div className="mx-auto max-w-5xl overflow-x-hidden px-8 text-gray-800 sm:p-8">
+      <h1 className="mb-8 font-[Iceberg] text-3xl md:text-4xl font-bold sm:mb-10">Tools</h1>
+      <div className="mx-auto grid max-w-fit grid-cols-1 gap-4 text-gray-800 sm:grid-cols-2 mdlg:gap-8">
         {data
           .sort((a, b) => {
             if (b.stars === a.stars) {

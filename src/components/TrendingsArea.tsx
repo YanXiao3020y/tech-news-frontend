@@ -35,7 +35,7 @@ const transformData = (res: DataType[]) => {
 
 export default function TrendingsArea({ data }: { data: DataType[] }) {
   return (
-    <div className="flex h-[394px] w-5/6 flex-col items-center rounded-lg bg-white shadow-lg shadow-gray-200 sm:w-[700px]">
+    <div className="flex h-auto w-5/6 flex-col items-center rounded-lg bg-white shadow-lg shadow-gray-200 sm:w-[700px]">
       <div className="flex w-full items-center pb-3 pl-6 pt-6 sm:px-10 sm:py-8">
         <h1 className="mr-3 font-sour text-3xl">Trendings</h1>
         <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
@@ -46,7 +46,7 @@ export default function TrendingsArea({ data }: { data: DataType[] }) {
             (item, index) => {
               return (
                 <li className="mb-3 sm:mb-6" key={index}>
-                  <p className="line-clamp-2 overflow-x-hidden break-all text-sm sm:line-clamp-1 sm:text-ellipsis sm:text-nowrap sm:text-base">
+                  <p className="line-clamp-2 overflow-x-hidden break-all text-base sm:line-clamp-1 sm:text-ellipsis sm:text-nowrap sm:text-base">
                     <a
                       href={item.link}
                       className="no-underline transition-colors duration-200 hover:text-blue-600"

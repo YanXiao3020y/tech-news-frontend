@@ -20,24 +20,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
   tag,
 }) => {
   return (
-    <div className="group relative h-36 w-[384px] transform overflow-hidden rounded-lg shadow-lg shadow-gray-200 transition-transform hover:scale-105 sm:h-44 sm:w-72 md:h-48 md:w-80">
+    <div className="group relative h-36 w-full transform overflow-hidden rounded-lg shadow-lg shadow-gray-200 transition-transform hover:scale-105 sm:h-48 sm:w-72 md:h-48 md:w-80">
       <div className="absolute inset-0 bg-white p-6 transition-opacity duration-300 ease-in-out hover:opacity-0">
         <img
           src={icon}
           width="30"
           height="30"
-          className="transform rounded-md transition-all duration-300 group-hover:-translate-y-10 group-hover:opacity-0"
+          className="absolute right-6 sm:right-0 sm:relative transform rounded-md transition-all duration-300 group-hover:-translate-y-10 group-hover:opacity-0"
           onError={(e) => {
             (e.target as HTMLImageElement).src = "/placeholder.png";
           }}
         />
-        <h2 className="absolute left-6 top-16 mb-8 max-w-[80%] transform overflow-hidden overflow-ellipsis text-nowrap font-sour text-xl font-semibold transition-all duration-300 group-hover:-translate-y-10 md:text-2xl">
+        <h2 className="absolute left-6 sm:top-16 mb-8 max-w-[80%] transform overflow-hidden overflow-ellipsis text-nowrap font-sour text-xl font-semibold transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-10 md:text-2xl">
           {productName}
         </h2>
-        <p className="absolute left-6 top-24 transform font-funnel text-xs text-gray-500 transition-all duration-300 group-hover:-translate-y-10">
+        <p className="absolute left-6 top-14 sm:top-24 transform font-funnel text-xs text-gray-500 transition-all duration-300 group-hover:-translate-y-10">
           Release: {releaseDate}
         </p>
-        <p className="absolute left-6 top-[120px] w-[85%] transform font-funnel text-base text-gray-800 transition-all duration-300 group-hover:-translate-y-16">
+        <p className="absolute left-6 top-20  sm:top-[120px] w-[85%] transform font-funnel text-base text-gray-800 transition-all duration-300 group-hover:-translate-y-16">
           {tag}
         </p>
       </div>
