@@ -1,18 +1,18 @@
-'use client'
-import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+"use client";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function ClientMotionWrapper({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const path = usePathname()
-  const [currentPath, setCurrentPath] = useState(path)
+  const path = usePathname();
+  const [currentPath, setCurrentPath] = useState(path);
   useEffect(() => {
-    setCurrentPath(path)
-  }, [path])
+    setCurrentPath(path);
+  }, [path]);
   return (
     <motion.div
       key={currentPath}
@@ -23,5 +23,5 @@ export default function ClientMotionWrapper({
     >
       {children}
     </motion.div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
 interface ProductCardProps {
-  author: string
-  productName: string
-  releaseDate: string
-  description: string
-  link: string
-  icon: string
-  tag: string
+  author: string;
+  productName: string;
+  releaseDate: string;
+  description: string;
+  link: string;
+  icon: string;
+  tag: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -15,45 +15,45 @@ const ProductCard: React.FC<ProductCardProps> = ({
   productName,
   releaseDate,
   description,
-  link = '#',
+  link = "#",
   icon,
-  tag
+  tag,
 }) => {
   return (
-    <div className="group relative w-[384px] h-36 md:w-80 md:h-48 sm:w-80 sm:h-44 border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform transform hover:scale-105">
-      <div className="absolute inset-0 p-6 bg-white transition-opacity duration-300 ease-in-out hover:opacity-0">
+    <div className="group relative h-36 w-full transform overflow-hidden rounded-lg shadow-lg shadow-gray-200 transition-transform hover:scale-105 sm:h-48 sm:w-72 md:h-48 md:w-80">
+      <div className="absolute inset-0 bg-white p-6 transition-opacity duration-300 ease-in-out hover:opacity-0">
         <img
           src={icon}
           width="30"
           height="30"
-          className="transition-all rounded-md duration-300 transform group-hover:-translate-y-10 group-hover:opacity-0"
+          className="absolute right-6 sm:right-0 sm:relative transform rounded-md transition-all duration-300 group-hover:-translate-y-10 group-hover:opacity-0"
           onError={(e) => {
-            ;(e.target as HTMLImageElement).src = '/placeholder.png'
+            (e.target as HTMLImageElement).src = "/placeholder.png";
           }}
         />
-        <h2 className="absolute max-w-[80%] left-6 top-16 transition-all duration-300 transform group-hover:-translate-y-10 font-sour md:text-2xl text-xl font-semibold mb-8 text-nowrap overflow-ellipsis overflow-hidden">
+        <h2 className="absolute left-6 sm:top-16 mb-8 max-w-[80%] transform overflow-hidden overflow-ellipsis text-nowrap font-sour text-xl font-semibold transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-10 md:text-2xl">
           {productName}
         </h2>
-        <p className="transition-all duration-300 transform group-hover:-translate-y-10 absolute top-24 left-6 text-xs font-funnel text-gray-500">
+        <p className="absolute left-6 top-14 sm:top-24 transform font-funnel text-xs text-gray-500 transition-all duration-300 group-hover:-translate-y-10">
           Release: {releaseDate}
         </p>
-        <p className="transition-all duration-300 transform group-hover:-translate-y-16 absolute top-[120px] text-base font-funnel text-gray-800">
+        <p className="absolute left-6 top-20  sm:top-[120px] w-[85%] transform font-funnel text-base text-gray-800 transition-all duration-300 group-hover:-translate-y-16">
           {tag}
         </p>
       </div>
 
-      <div className="absolute inset-0 p-6 bg-blue-50 opacity-0 hover:opacity-100 overflow-auto transition-opacity duration-300">
-        <h2 className="absolute max-w-[80%] left-6 top-16 transition-all duration-300 transform group-hover:-translate-y-10 font-sour md:text-2xl text-xl font-semibold mb-8 text-nowrap overflow-ellipsis overflow-hidden">
+      <div className="absolute inset-0 overflow-auto bg-blue-50 p-6 opacity-0 transition-opacity duration-300 hover:opacity-100">
+        <h2 className="absolute left-6 top-16 mb-8 max-w-[80%] transform overflow-hidden overflow-ellipsis text-nowrap font-sour text-xl font-semibold transition-all duration-300 group-hover:-translate-y-10 md:text-2xl">
           {productName}
         </h2>
-        <p className="transition-all duration-300 transform group-hover:-translate-y-10 absolute top-24 text-xs font-funnel text-gray-500">
+        <p className="absolute top-24 transform font-funnel text-xs text-gray-500 transition-all duration-300 group-hover:-translate-y-10">
           Author: {author}
         </p>
-        <p className="relative transition-all duration-300 transform group-hover:-translate-y-16 mt-[124px] text-base font-funnel text-gray-800">
+        <p className="relative mt-[120px] transform font-funnel text-base text-gray-800 transition-all duration-300 group-hover:-translate-y-16">
           {description}
           <a
             href={link}
-            className="inline-block absolute -bottom-16 left-0 font-funnel text-center px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            className="absolute -bottom-16 left-0 inline-block rounded-lg bg-blue-600 px-4 py-2 text-center font-funnel text-white transition-colors duration-200 hover:bg-blue-700"
             target="_blank"
           >
             Read More
@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

@@ -1,44 +1,44 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 interface NewProps {
-  index: number
-  published: string
-  link: string
-  title: string
-  icon: string
+  index: number;
+  published: string;
+  link: string;
+  title: string;
+  icon: string;
 }
 const NewCard: React.FC<NewProps & React.RefAttributes<HTMLLIElement>> =
   React.forwardRef((props, ref) => {
     // 高阶函数，负责转发 ref
-    const { index, published, link, title, icon } = props
+    const { index, published, link, title, icon } = props;
     return (
       <li
-        className="relative bg-white px-6 pt-6 pb-10 mb-6 rounded-lg shadow-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl"
+        className="relative mb-6 rounded-lg bg-white px-6 pb-10 pt-6 shadow-lg shadow-gray-200 transition-all duration-300 hover:shadow-xl"
         ref={ref}
         style={{
-          transform: `translateX(${index % 2 === 0 ? '' : '-'}1500px)`
+          transform: `translateX(${index % 2 === 0 ? "" : "-"}1500px)`,
         }}
       >
-        <span className="font-funnel sm:text-sm text-xs text-gray-500">
+        <span className="font-funnel text-xs text-gray-500 sm:text-sm">
           {published}
         </span>
         <img
           src={icon}
           width="20"
           height="20"
-          className="inline-block absolute right-6"
+          className="absolute right-6 inline-block"
           onError={(e) => {
-            ;(e.target as HTMLImageElement).src = '/placeholder.png'
+            (e.target as HTMLImageElement).src = "/placeholder.png";
           }}
         />
         <Link
           href={link}
-          className="block font-funnel md:text-2xl sm:text-xl text-lg font-semibold text-gray-800 hover:text-blue-600 mt-2 transition-colors"
+          className="mt-2 block font-funnel text-lg font-semibold text-gray-800 transition-colors hover:text-blue-600 sm:text-xl md:text-2xl"
         >
           {title}
         </Link>
       </li>
-    )
-  })
+    );
+  });
 
-export default NewCard
+export default NewCard;

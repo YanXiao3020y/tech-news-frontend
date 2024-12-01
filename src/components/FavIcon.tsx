@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 function Favicon() {
   return (
-    <Link href="/">
-      <div className="no-select absolute top-0 left-6 w-10 h-[75px] flex items-center justify-center">
-        <Image src="/favicon.ico" alt="icon" width="40" height="40" />
-      </div>
-    </Link>
+    <div className="no-select relative left-0 top-0 flex h-[75px] w-[75px] items-center justify-center">
+      <Link href="/">
+        <Image src="/favicon.ico" alt="icon" width="50" height="50" />
+      </Link>
+    </div>
   );
 }
 export default Favicon;

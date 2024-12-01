@@ -1,10 +1,10 @@
 export default function Archives() {
   return (
-    <div className="max-w-6xl mx-auto p-8">
-      <h1 className="text-4xl font-[Iceberg] font-bold mb-10">Archives</h1>
-      <div className="h-96 w-full flex justify-center items-center">
+    <div className="mx-auto max-w-6xl p-8">
+      <h1 className="mb-10 font-[Iceberg] text-4xl font-bold">Archives</h1>
+      <div className="flex h-96 w-full items-center justify-center">
         <p>no more</p>
       </div>
     </div>
-  )
+  );
 }
