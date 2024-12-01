@@ -1,6 +1,6 @@
-import styles from '../styles/FeaturesArea.module.css'
+import styles from "../styles/FeaturesArea.module.css";
 // import FeatureCard from './FeatureCard'
-function FeaturesArea () {
+function FeaturesArea() {
   // const elements = Array(3).fill(null)
   return (
     <div className={styles.features}>
@@ -12,8 +12,7 @@ function FeaturesArea () {
         })
       } */}
     </div>
-  )
+  );
 }
 
-
-export default FeaturesArea
+export default FeaturesArea;

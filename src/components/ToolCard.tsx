@@ -1,85 +1,85 @@
-import Link from 'next/link'
-import React from 'react'
-import TagButton from './TagButton'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faCodeFork } from '@fortawesome/free-solid-svg-icons'
+import Link from "next/link";
+import React from "react";
+import TagButton from "./TagButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faCodeFork } from "@fortawesome/free-solid-svg-icons";
 
 interface ToolCardProps {
-  title: string
-  summary: string
-  stars: number
-  forks: number
-  language: string
+  title: string;
+  summary: string;
+  stars: number;
+  forks: number;
+  language: string;
 }
 
 const languageColors: { [key: string]: string } = {
-  JavaScript: '#f7df1e',
-  TypeScript: '#007acc',
-  Python: '#3572A5',
-  Java: '#b07219',
-  'C#': '#178600',
-  'C++': '#00599C',
-  Starlark: '#76D275',
-  Ruby: '#701516',
-  Go: '#00ADD8',
-  PHP: '#4F5D95',
-  Swift: '#ffac45',
-  Rust: '#dea584',
-  Kotlin: '#A97BFF',
-  Default: '#333333'
-}
+  JavaScript: "#f7df1e",
+  TypeScript: "#007acc",
+  Python: "#3572A5",
+  Java: "#b07219",
+  "C#": "#178600",
+  "C++": "#00599C",
+  Starlark: "#76D275",
+  Ruby: "#701516",
+  Go: "#00ADD8",
+  PHP: "#4F5D95",
+  Swift: "#ffac45",
+  Rust: "#dea584",
+  Kotlin: "#A97BFF",
+  Default: "#333333",
+};
 
 const ToolCard: React.FC<ToolCardProps> = ({
   title,
   summary,
   stars,
   forks,
-  language
+  language,
 }) => {
-  const bgColor = languageColors[language] || languageColors.Default
+  const bgColor = languageColors[language] || languageColors.Default;
   return (
-    <div className="relative mdlg:w-96 mdlg:h-48 sm:w-80 w-[400px] h-40  border rounded-lg overflow-hidden shadow-lg shadow-gray-200 transition-transform duration-300 transform hover:scale-105">
-      <div className="absolute inset-0 break-words bg-white mdlg:p-8 sm:p-4 p-6 transition-opacity duration-300 hover:bg-yellow-50">
+    <div className="relative h-40 w-[400px] transform overflow-hidden rounded-lg border shadow-lg shadow-gray-200 transition-transform duration-300 hover:scale-105 sm:w-80 mdlg:h-48 mdlg:w-96">
+      <div className="absolute inset-0 break-words bg-white p-6 transition-opacity duration-300 hover:bg-yellow-50 sm:p-4 mdlg:p-8">
         <div
-          className="inline-block cursor-default absolute right-0 top-0 mdlg:px-3 mdlg:py-2 px-3 py-0.5 text-gray-800 font-[Inder] font-semibold mdlg:text-sm text-xs rounded-lg transform translate-x-1.5 mdlg:-translate-y-0.5"
+          className="absolute right-0 top-0 inline-block translate-x-1.5 transform cursor-default rounded-lg px-3 py-0.5 font-[Inder] text-xs font-semibold text-gray-800 mdlg:-translate-y-0.5 mdlg:px-3 mdlg:py-2 mdlg:text-sm"
           style={{
-            backgroundColor: `${bgColor}99`
+            backgroundColor: `${bgColor}99`,
           }}
         >
           {language}
         </div>
-        <p className="z-10 font-bold w-full mdlg:text-xl text-base break-words overflow-hidden text-nowrap overflow-ellipsis">
+        <p className="z-10 w-full overflow-hidden overflow-ellipsis text-nowrap break-words text-base font-bold mdlg:text-xl">
           <Link
-            href={`https://github.com/${title.split('/')[0]}`}
+            href={`https://github.com/${title.split("/")[0]}`}
             target="_blank"
-            className="font-sour hover:text-blue-500 transition-colors duration-200"
+            className="font-sour transition-colors duration-200 hover:text-blue-500"
           >
-            {title.split('/')[0]}
+            {title.split("/")[0]}
           </Link>
           /
           <Link
             href={`https://github.com/${title}`}
             target="_blank"
-            className="font-sour hover:text-blue-500 transition-colors duration-200"
+            className="font-sour transition-colors duration-200 hover:text-blue-500"
           >
-            {title.split('/')[1]}
+            {title.split("/")[1]}
           </Link>
         </p>
         <div className="mt-2 flex gap-3">
-          <TagButton number={stars} color={'#FFD43B'}>
+          <TagButton number={stars} color={"#FFD43B"}>
             <FontAwesomeIcon
               icon={faStar}
-              style={{ color: '#FFD43B', fontSize: '0.9rem' }}
+              style={{ color: "#FFD43B", fontSize: "0.9rem" }}
             ></FontAwesomeIcon>
           </TagButton>
-          <TagButton number={forks} color={'#5da4da'}>
+          <TagButton number={forks} color={"#5da4da"}>
             <FontAwesomeIcon
               icon={faCodeFork}
-              style={{ color: '#389ae5', fontSize: '0.9rem' }}
+              style={{ color: "#389ae5", fontSize: "0.9rem" }}
             ></FontAwesomeIcon>
           </TagButton>
         </div>
-        <p className="no-scrollbar font-funnel overflow-auto h-12 mt-3 mdlg:text-base text-sm">
+        <p className="no-scrollbar mt-3 h-12 overflow-auto font-funnel text-sm mdlg:text-base">
           {summary}
         </p>
       </div>
@@ -111,7 +111,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
         </Link>
       </div> */}
     </div>
-  )
-}
+  );
+};
 
-export default ToolCard
+export default ToolCard;

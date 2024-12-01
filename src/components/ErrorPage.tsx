@@ -1,11 +1,9 @@
-export default function ErrorPage({error}: {
-  error: string
-}) {
+export default function ErrorPage({ error }: { error: string }) {
   return (
-    <div className="w-full h-screen bg-gray-100 flex justify-center items-center">
-      <div className="p-5 bg-white rounded-2xl flex justify-center items-center shadow-lg">
+    <div className="flex h-screen w-full items-center justify-center bg-gray-100">
+      <div className="flex items-center justify-center rounded-2xl bg-white p-5 shadow-lg">
         Error: {error}
       </div>
     </div>
-  )
+  );
 }

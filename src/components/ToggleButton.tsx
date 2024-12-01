@@ -1,16 +1,16 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 function ToggleButton({
   togglNav,
-  toggle
+  toggle,
 }: {
-  togglNav: boolean
-  toggle: () => void
+  togglNav: boolean;
+  toggle: () => void;
 }) {
   return (
     <div
-      className={`sm:hidden block z-20 fixed top-0 right-0 transform transition-all duration-300 ${
-        togglNav ? '' : ''
+      className={`fixed right-0 top-0 z-20 block transform transition-all duration-300 sm:hidden ${
+        togglNav ? "" : ""
       }`}
     >
       {/* <div
@@ -20,14 +20,20 @@ function ToggleButton({
         <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
       </div> */}
       <div
-        className="relative flex justify-center items-center cursor-pointer h-[75px] w-[75px] text-3xl"
+        className="relative flex h-[75px] w-[75px] cursor-pointer items-center justify-center text-3xl"
         onClick={toggle}
       >
-        <span className={`w-6 h-[3px] rounded-sm bg-black absolute transition-all duration-300 ${togglNav ? 'opacity-0' : 'opacity-1'}`}></span>
-        <span className={`w-6 h-[3px] rounded-sm bg-black absolute transition-all duration-300 -translate-y-2 ${togglNav ? 'translate-y-0 rotate-45' : ''}`}></span>
-        <span className={`w-6 h-[3px] rounded-sm bg-black absolute transition-all duration-300 translate-y-2 ${togglNav ? 'translate-y-0 -rotate-45' : ''}`}></span>
+        <span
+          className={`absolute h-[3px] w-6 rounded-sm bg-black transition-all duration-300 ${togglNav ? "opacity-0" : "opacity-1"}`}
+        ></span>
+        <span
+          className={`absolute h-[3px] w-6 -translate-y-2 rounded-sm bg-black transition-all duration-300 ${togglNav ? "translate-y-2 rotate-45" : ""}`}
+        ></span>
+        <span
+          className={`absolute h-[3px] w-6 translate-y-2 rounded-sm bg-black transition-all duration-300 ${togglNav ? "-translate-y-2 -rotate-45" : ""}`}
+        ></span>
       </div>
     </div>
-  )
+  );
 }
-export default ToggleButton
+export default ToggleButton;

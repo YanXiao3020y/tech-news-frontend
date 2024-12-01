@@ -1,41 +1,40 @@
-'use client'
-import React from 'react'
-import Image from 'next/image'
-import Favicon from './FavIcon'
-import Link from 'next/link'
-import TagButton from './TagButton'
-import ToggleButton from './ToggleButton'
-import { useState, useEffect } from 'react'
-import { li } from 'framer-motion/client'
+"use client";
+import React from "react";
+import Image from "next/image";
+import Favicon from "./FavIcon";
+import Link from "next/link";
+import TagButton from "./TagButton";
+import ToggleButton from "./ToggleButton";
+import { useState, useEffect } from "react";
 function NavBar() {
-  const navList: Array<string> = ['NEWS', 'PRODUCTS', 'TOOLS']
-  const [togglNav, setTogglNav] = useState(false)
+  const navList: Array<string> = ["NEWS", "PRODUCTS", "TOOLS"];
+  const [togglNav, setTogglNav] = useState(false);
   useEffect(() => {
     if (togglNav) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [togglNav])
+      document.body.style.overflow = "auto";
+    };
+  }, [togglNav]);
   // const [isActive, setIsActive] = useState(false)
   return (
     <>
-      <div className="bg-gray-100 hidden sm:flex h-[75px] w-full min-h-[70px] justify-center items-center sticky top-0 z-10">
+      <div className="sticky top-0 z-10 hidden h-[75px] min-h-[70px] w-full items-center justify-center bg-gray-100 sm:flex">
         <Link href="/">
-          <div className="no-select absolute top-0 left-6 w-10 h-[75px] flex items-center justify-center">
+          <div className="no-select absolute left-6 top-0 flex h-[75px] w-10 items-center justify-center">
             <Image
               src="/favicon.png"
               alt="icon"
               width="30"
               height="30"
-              className="w-auto h-auto"
+              className="h-auto w-auto"
             />
           </div>
         </Link>
-        <div className="relative no-select w-80 sm:w-[400px] h-full flex justify-around items-center">
+        <div className="no-select relative flex h-full w-80 items-center justify-around sm:w-[400px]">
           {/* <div
           className="cursor-pointer font-inknut text-center text-[0.8rem] sm:text-[1rem] h-full relative inline-block leading-[75px]"
           onMouseOver={() => {
@@ -52,13 +51,13 @@ function NavBar() {
           {navList.map((item, index) => {
             return (
               <Link
-                className="font-inknut text-[0.8rem] sm:text-[1rem] h-full relative inline-block leading-[75px]"
+                className="relative inline-block h-full font-inknut text-[0.8rem] leading-[75px] sm:text-[1rem]"
                 href={`/${item.toLowerCase()}`}
                 key={index}
               >
                 {item}
               </Link>
-            )
+            );
           })}
         </div>
         <div className="absolute right-4">
@@ -72,27 +71,27 @@ function NavBar() {
       <ToggleButton
         togglNav={togglNav}
         toggle={() => {
-          setTogglNav(!togglNav)
+          setTogglNav(!togglNav);
         }}
       ></ToggleButton>
       <div
-        className={`z-10 flex sm:hidden bg-gray-100 w-full h-[75px] transition-opacity duration-300`}
+        className={`z-10 flex h-[75px] w-full bg-gray-100 transition-opacity duration-300 sm:hidden`}
       >
         <Favicon></Favicon>
       </div>
 
       <div
-        className={`z-10 h-screen fixed w-full sm:hidden flex items-center justify-end bg-gray-50 top-0 left-0 transition-all duration-700 transform ${
-          togglNav ? '' : 'translate-x-full'
+        className={`fixed left-0 top-0 z-10 flex h-screen w-full transform items-center justify-end bg-gray-50 transition-all duration-700 sm:hidden ${
+          togglNav ? "" : "translate-x-full"
         }`}
       >
-        <ul className="w-80 flex flex-col items-end justify-center h-[480px]">
+        <ul className="flex h-[480px] w-80 flex-col items-end justify-center">
           <li
-            className={`w-2/5 h-16 flex items-center border-b-2 border-gray-200 transition-all duration-500 delay-100 ${
-              togglNav ? '' : 'translate-x-32'
+            className={`flex h-16 w-2/5 items-center border-b-2 border-gray-200 transition-all delay-100 duration-500 ${
+              togglNav ? "" : "translate-x-32"
             }`}
             onClick={() => {
-              setTogglNav(false)
+              setTogglNav(false);
             }}
           >
             <Link href="/">
@@ -103,33 +102,33 @@ function NavBar() {
             return (
               <li
                 key={index}
-                className={`w-2/5 h-16 flex items-center border-b-2 border-gray-200 transition-all duration-500 ${
-                  togglNav ? '' : 'translate-x-32'
+                className={`flex h-16 w-2/5 items-center border-b-2 border-gray-200 transition-all duration-500 ${
+                  togglNav ? "" : "translate-x-32"
                 }`}
                 style={{
-                  transitionDelay: `${((index + 1) * 0.05 + 0.1).toFixed(2)}s`
+                  transitionDelay: `${((index + 1) * 0.05 + 0.1).toFixed(2)}s`,
                 }}
               >
                 <Link
                   href={`/${item.toLowerCase()}`}
                   onClick={() => {
-                    setTogglNav(false)
+                    setTogglNav(false);
                   }}
                 >
                   <span className="font-inknut text-lg">{item}</span>
                 </Link>
               </li>
-            )
+            );
           })}
           <li
-            className={`w-2/5 h-16 flex items-center border-b-2 border-gray-200 transition-all duration-500 delay-300 ${
-              togglNav ? '' : 'translate-x-32'
+            className={`flex h-16 w-2/5 items-center border-b-2 border-gray-200 transition-all delay-300 duration-500 ${
+              togglNav ? "" : "translate-x-32"
             }`}
           >
             <Link
               href="/about"
               onClick={() => {
-                setTogglNav(false)
+                setTogglNav(false);
               }}
             >
               <span className="font-inknut text-lg">ABOUT</span>
@@ -138,7 +137,7 @@ function NavBar() {
         </ul>
       </div>
     </>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
